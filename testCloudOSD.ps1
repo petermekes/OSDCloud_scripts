@@ -139,7 +139,7 @@ PowerShell -NoL -Com Set-ExecutionPolicy RemoteSigned -Force
 Set Path = %PATH%;C:\Program Files\WindowsPowerShell\Scripts
 Start /Wait PowerShell -NoL -C Install-Module AutopilotOOBE -Force -Verbose
 Start /Wait PowerShell -NoL -C Start-AutopilotOOBE
-Start /Wait PowerShell -NoL -C Invoke-WebPSScript https://raw.githubusercontent.com/petermekes/OSDCloud_scripts/main/APTestAtestioan.ps1
+Start /Wait PowerShell -NoL -C Invoke-WebPSScript https://raw.githubusercontent.com/petermekes/OSDCloud_scripts/main/APTestAttestiation.ps1
 Start /Wait PowerShell -NoL -C Restart-Computer -Force
 '@
 $OOBECMD | Out-File -FilePath 'C:\Windows\System32\2.cmd' -Encoding ascii -Force
