@@ -1,4 +1,4 @@
-﻿#================================================
+#================================================
 #   [PreOS] Update Module
 #================================================
 Write-Host -ForegroundColor Green "Updating OSD PowerShell Module"
@@ -16,10 +16,10 @@ if ((Get-MyComputerModel) -match 'Virtual') {
 #   [OS] Params and Start-OSDCloud
 #=======================================================================
 $Params = @{
-    OSVersion = "Windows 10"
-    OSBuild = "21H2"
+    OSVersion = "Windows 11"
+    OSBuild = "22H2"
     OSEdition = "Pro"
-    OSLanguage = "de-de"
+    OSLanguage = "en-en"
     ZTI = $true
     Firmware = $false
 }
@@ -84,7 +84,7 @@ Write-Host -ForegroundColor Green "Define Computername:"
 $Serial = Get-WmiObject Win32_bios | Select-Object -ExpandProperty SerialNumber
 $TargetComputername = $Serial.Substring(4,4)
 
-$AssignedComputerName = "AkosCloud-$TargetComputername"
+$AssignedComputerName = "PeMe-$TargetComputername"
 Write-Host -ForegroundColor Red $AssignedComputerName
 Write-Host ""
 
@@ -92,11 +92,11 @@ Write-Host -ForegroundColor Green "Create C:\ProgramData\OSDeploy\OSDeploy.Autop
 $AutopilotOOBEJson = @"
 {
     "AssignedComputerName" : "$AssignedComputerName",
-    "AddToGroup":  "AADGroup",
+    "AddToGroup":  "grp-autopilot-personal",
     "Assign":  {
                    "IsPresent":  true
                },
-    "GroupTag":  "GroupTagXXX",
+    "GroupTag":  "AEF-Personal",
     "Hidden":  [
                    "AddToGroup",
                    "AssignedUser",
@@ -107,7 +107,7 @@ $AutopilotOOBEJson = @"
     "PostAction":  "Quit",
     "Run":  "NetworkingWireless",
     "Docs":  "https://google.com/",
-    "Title":  "AkosCloud Autopilot Register"
+    "Title":  "PeMe Autopilot Register"
 }
 "@
 
