@@ -1,4 +1,4 @@
-#================================================
+﻿#================================================
 #   [PreOS] Update Module
 #================================================
 Write-Host -ForegroundColor Green "Updating OSD PowerShell Module"
@@ -17,7 +17,7 @@ if ((Get-MyComputerModel) -match 'Virtual') {
 #=======================================================================
 $Params = @{
     OSVersion = "Windows 11"
-    OSBuild = "22H2"
+    OSBuild = "23H2"
     OSEdition = "Pro"
     OSLanguage = "en-us"
     ZTI = $true
