@@ -155,6 +155,7 @@ XCOPY C:\ProgramData\OSDeploy C:\ProgramData\Microsoft\IntuneManagementExtension
 RD C:\OSDCloud /S /Q
 RD C:\Drivers /S /Q
 RD C:\Temp /S /Q
+Set Path = %PATH%;C:\Program Files\WindowsPowerShell\Scripts
 Start /Wait PowerShell -NoL -C Invoke-WebPSScript https://raw.githubusercontent.com/petermekes/OSDCloud_scripts/main/AutoPilot.ps1
 # Start /Wait PowerShell -NoL -C Get-WindowsAutoPilotInfo.ps1 -Online -Assign -groupTag $grouptag -TenantId $tenant -AppId $clientid -AppSecret $clientSecret
 "@

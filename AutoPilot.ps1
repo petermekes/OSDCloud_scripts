@@ -8,5 +8,4 @@ $clientSecret = 'kg88Q~dwe6G0e-NIyvEhKIupdZKlWk36hs43fbkw'
 
 Install-Script -Name Get-WindowsAutoPilotInfo 
 
-Set Path = %PATH%;C:\Program Files\WindowsPowerShell\Scripts
 Get-WindowsAutoPilotInfo.ps1 -Online -Assign -groupTag $grouptag -TenantId $tenant -AppId $clientid -AppSecret $clientSecret
