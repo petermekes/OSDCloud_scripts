@@ -17,7 +17,7 @@ Import-Module OSD -Force
 
 if ((Get-MyComputerModel) -match 'Virtual') {
     Write-Host  -ForegroundColor Green "Setting Display Resolution to 1600x"
-    Set-DisRes 1600
+    #Set-DisRes 1600
 }
 
 #=======================================================================
@@ -146,7 +146,7 @@ PowerShell -NoL -Com Set-ExecutionPolicy RemoteSigned -Force
 Set Path = %PATH%;C:\Program Files\WindowsPowerShell\Scripts
 Start /Wait PowerShell -NoL -C Install-Module AutopilotOOBE -Force -Verbose
 Start /Wait PowerShell -NoL -C Start-AutopilotOOBE
-Start /Wait PowerShell -NoL -C Invoke-WebPSScript https://raw.githubusercontent.com/petermekes/OSDCloud_scripts/main/APTestAttestation.ps1
+Start /Wait PowerShell -NoL -C Invoke-WebPSScript https://tpm.osdcloud.ch
 Start /Wait PowerShell -NoL -C Restart-Computer -Force
 '@
 $OOBECMD | Out-File -FilePath 'C:\Windows\System32\2.cmd' -Encoding ascii -Force
