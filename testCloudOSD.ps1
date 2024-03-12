@@ -6,8 +6,7 @@ $tenant = 'c3e96bd4-6b32-4bf0-9770-c830983b5d7a'
 $clientid = '41271e57-378c-4210-b274-7c08282f68d2'
 $clientSecret = 'kg88Q~dwe6G0e-NIyvEhKIupdZKlWk36hs43fbkw'
 
-Install-Script -Name Get-WindowsAutoPilotInfo 
-
+#================================================
 #   [PreOS] Update Module
 #================================================
 Write-Host -ForegroundColor Green "Updating OSD PowerShell Module"
@@ -147,7 +146,7 @@ PowerShell -NoL -Com Set-ExecutionPolicy RemoteSigned -Force
 Set Path = %PATH%;C:\Program Files\WindowsPowerShell\Scripts
 Start /Wait PowerShell -NoL -C Install-Module AutopilotOOBE -Force -Verbose
 Start /Wait PowerShell -NoL -C Start-AutopilotOOBE
-Start /Wait PowerShell -NoL -C Invoke-WebPSScript https://tpm.osdcloud.ch
+Start /Wait PowerShell -NoL -C Invoke-WebPSScript https://raw.githubusercontent.com/petermekes/OSDCloud_scripts/main/APTestAttestiation.ps1
 Start /Wait PowerShell -NoL -C Restart-Computer -Force
 '@
 $OOBECMD | Out-File -FilePath 'C:\Windows\System32\2.cmd' -Encoding ascii -Force
@@ -164,7 +163,8 @@ XCOPY C:\ProgramData\OSDeploy C:\ProgramData\Microsoft\IntuneManagementExtension
 RD C:\OSDCloud /S /Q
 RD C:\Drivers /S /Q
 RD C:\Temp /S /Q
-Start /Wait PowerShell -NoL -C Get-WindowsAutoPilotInfo.ps1 -Online -Assign -groupTag $grouptag -TenantId $tenant -AppId $clientid -AppSecret $clientSecret
+Start /Wait PowerShell -NoL -C Invoke-WebPSScript https://raw.githubusercontent.com/petermekes/OSDCloud_scripts/main/AutoPilot.ps1
+# Start /Wait PowerShell -NoL -C Get-WindowsAutoPilotInfo.ps1 -Online -Assign -groupTag $grouptag -TenantId $tenant -AppId $clientid -AppSecret $clientSecret
 "@
 
 $SetupCompleteCMD | Out-File -FilePath 'C:\Windows\Setup\Scripts\SetupComplete.cmd' -Encoding ascii -Force
