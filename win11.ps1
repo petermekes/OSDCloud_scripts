@@ -1,4 +1,4 @@
-﻿#to Run, boot OSDCloudUSB, at the PS Prompt: iex (irm win11.garytown.com)
+﻿#to Run boot OSDCloudUSB, at the PS Prompt: iex (irm win11.garytown.com)
 $ScriptName = 'win11.garytown.com'
 $ScriptVersion = '24.01.12.01'
 Write-Host -ForegroundColor Green "$ScriptName $ScriptVersion"
@@ -21,7 +21,7 @@ $OSVersion = 'Windows 11' #Used to Determine Driver Pack
 $OSReleaseID = '23H2' #Used to Determine Driver Pack
 $OSName = 'Windows 11 23H2 x64'
 $OSEdition = 'Pro'
-$OSActivation = 'Retail'
+$OSActivation = 'Volume'
 $OSLanguage = 'en-us'
 
 

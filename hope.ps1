@@ -6,7 +6,7 @@ Creates Setup Complete Files
 $ScriptName = 'hope.garytown.com'
 $ScriptVersion = '24.1.22.1'
 
-iex (irm https://raw.githubusercontent.com/petermekes/OSDCloud_scripts/main/funtion.ps1)
+iex (irm https://raw.githubusercontent.com/petermekes/OSDCloud_scripts/main/funtions.ps1)
 #region functions
 function Set-SetupCompleteCreateStartHOPEonUSB {
     
@@ -37,8 +37,8 @@ function Set-SetupCompleteCreateStartHOPEonUSB {
 
     New-Item -Path $PSFilePath -ItemType File -Force
     Add-Content -path $PSFilePath "Write-Output 'Starting SetupComplete HOPE Script Process'"
-    Add-Content -path $PSFilePath "Write-Output 'iex (irm hope.garytown.com)'"
-    Add-Content -path $PSFilePath 'iex (irm hope.garytown.com)'
+    Add-Content -path $PSFilePath "Write-Output 'iex (irm https://raw.githubusercontent.com/petermekes/OSDCloud_scripts/main/hope.ps1)'"
+    Add-Content -path $PSFilePath 'iex (irm https://raw.githubusercontent.com/petermekes/OSDCloud_scripts/main/hope.ps1)'
 }
 
 Function Restore-SetupCompleteOriginal {
@@ -100,8 +100,8 @@ if ($env:SystemDrive -ne 'X:') {
     #Set DO
     #Set-DOPoliciesGPORegistry
     
-    Write-Host -ForegroundColor Gray "**Running Test.garytown.com**" 
-    iex (irm test.garytown.com)
+    Write-Host -ForegroundColor Gray "**Running Test**" 
+    iex (irm https://raw.githubusercontent.com/petermekes/OSDCloud_scripts/main/test.ps1)
      
     #Set Time Zone to Automatic Update
     
