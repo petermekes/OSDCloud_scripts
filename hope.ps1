@@ -1,5 +1,7 @@
-﻿$ScriptName = 'hope'
+﻿#
+$ScriptName = 'hope'
 $ScriptVersion = '24.1.22.1'
+Write-Host -ForegroundColor Green "$ScriptName $ScriptVersion"
 
 iex (irm https://raw.githubusercontent.com/petermekes/OSDCloud_scripts/main/funtions.ps1)
 <#region functions
