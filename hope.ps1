@@ -1,9 +1,5 @@
-﻿<#
-Loads Functions
-Creates Setup Complete Files
-#>
-
-$ScriptName = 'hope.garytown.com'
+﻿
+$ScriptName = 'hope'
 $ScriptVersion = '24.1.22.1'
 
 iex (irm https://raw.githubusercontent.com/petermekes/OSDCloud_scripts/main/funtions.ps1)
