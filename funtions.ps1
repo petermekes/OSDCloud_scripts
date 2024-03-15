@@ -1,4 +1,4 @@
-﻿$ScriptName = 'functions.garytown.com'
+$ScriptName = 'functions.garytown.com'
 $ScriptVersion = '24.3.7.2'
 Set-ExecutionPolicy Bypass -Force
 
