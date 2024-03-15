@@ -2,7 +2,7 @@
 $ScriptVersion = '24.1.22.1'
 
 iex (irm https://raw.githubusercontent.com/petermekes/OSDCloud_scripts/main/funtions.ps1)
-#region functions
+<#region functions
 function Set-SetupCompleteCreateStartHOPEonUSB {
     
     $OSDCloudUSB = Get-Volume.usb | Where-Object {($_.FileSystemLabel -match 'OSDCloud') -or ($_.FileSystemLabel -match 'BHIMAGE')} | Select-Object -First 1
@@ -44,8 +44,8 @@ Function Restore-SetupCompleteOriginal {
         copy-item -Path "$ScriptsPath\SetupComplete.ps1.bak" -Destination "$ScriptsPath\SetupComplete.ps1"
     }
 }
-#endregion
-
+endregion
+#>
 
 
 
@@ -66,14 +66,14 @@ Set-ExecutionPolicy Bypass -Force
 #WinPE Stuff
 if ($env:SystemDrive -eq 'X:') {
     #Create Custom SetupComplete on USBDrive, this will get copied and run during SetupComplete Phase thanks to OSD Function: Set-SetupCompleteOSDCloudUSB
-    Set-SetupCompleteCreateStartHOPEonUSB
+    # Set-SetupCompleteCreateStartHOPEonUSB
     
     Write-Host -ForegroundColor Green "Starting win11.garytown.com"
     iex (irm https://raw.githubusercontent.com/petermekes/OSDCloud_scripts/main/win11.ps1)
 
     #Create Marker so it knows this is a "HOPE" computer - No longer need thanks to the custom setup complete above.
     #new-item -Path C:\OSDCloud\configs -Name hope.JSON -ItemType file
-    Restore-SetupCompleteOriginal
+    # Restore-SetupCompleteOriginal
     restart-computer
 }
 
