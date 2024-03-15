@@ -46,7 +46,7 @@ Function Restore-SetupCompleteOriginal {
     }
 }
 #endregion
-
+Pause
 
 
 
