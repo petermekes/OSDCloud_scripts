@@ -974,7 +974,8 @@ if (Test-path -path "x:\windows\system32\cmtrace.exe"){
 #restart-computer
 
 $text={Set-Location $env:ProgramFiles\WindowsPowerShell\Scripts\
-.\get-windowsautopilotinfo.ps1 -Online -Assign -groupTag '' -TenantId '' -AppId '' -AppSecret ''
+#.\get-windowsautopilotinfo.ps1 -Online -Assign -groupTag '' -TenantId '' -AppId '' -AppSecret ''
+Invoke-CloudSecret pmapvault APJoinAPP
 Stop-Transcript
 Restart-Computer}
 $text1={Stop-Transcript}
