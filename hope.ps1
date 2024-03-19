@@ -6,6 +6,48 @@ Creates Setup Complete Files
 $ScriptName = 'hope.garytown.com'
 $ScriptVersion = '24.1.22.1'
 
+function Set-SetupCompleteCreateStartHOPEonUSB {
+    
+    $OSDCloudUSB = Get-Volume.usb | Where-Object {($_.FileSystemLabel -match 'OSDCloud') -or ($_.FileSystemLabel -match 'BHIMAGE')} | Select-Object -First 1
+    $SetupCompletePath = "$($OSDCloudUSB.DriveLetter):\OSDCloud\Config\Scripts\SetupComplete"
+    $ScriptsPath = $SetupCompletePath
+
+    if (!(Test-Path -Path $ScriptsPath)){New-Item -Path $ScriptsPath} 
+
+    $RunScript = @(@{ Script = "SetupComplete"; BatFile = 'SetupComplete.cmd'; ps1file = 'SetupComplete.ps1';Type = 'Setup'; Path = "$ScriptsPath"})
+
+
+    Write-Output "Creating $($RunScript.Script) Files"
+
+    $BatFilePath = "$($RunScript.Path)\$($RunScript.batFile)"
+    $PSFilePath = "$($RunScript.Path)\$($RunScript.ps1File)"
+            
+    #Create Batch File to Call PowerShell File
+    if (Test-Path -Path $PSFilePath){
+        copy-item $PSFilePath -Destination "$ScriptsPath\SetupComplete.ps1.bak"
+    }        
+    New-Item -Path $BatFilePath -ItemType File -Force
+    $CustomActionContent = New-Object system.text.stringbuilder
+    [void]$CustomActionContent.Append('%windir%\System32\WindowsPowerShell\v1.0\powershell.exe -ExecutionPolicy ByPass -File C:\OSDCloud\Scripts\SetupComplete\SetupComplete.ps1')
+    Add-Content -Path $BatFilePath -Value $CustomActionContent.ToString()
+
+    #Create PowerShell File to do actions
+
+    New-Item -Path $PSFilePath -ItemType File -Force
+    Add-Content -path $PSFilePath "Write-Output 'Starting SetupComplete HOPE Script Process'"
+    Add-Content -path $PSFilePath "Write-Output 'iex (irm hope.garytown.com)'"
+    Add-Content -path $PSFilePath 'iex (irm hope.garytown.com)'
+}
+
+Function Restore-SetupCompleteOriginal {
+    $OSDCloudUSB = Get-Volume.usb | Where-Object {($_.FileSystemLabel -match 'OSDCloud') -or ($_.FileSystemLabel -match 'BHIMAGE')} | Select-Object -First 1
+    $SetupCompletePath = "$($OSDCloudUSB.DriveLetter):\OSDCloud\Config\Scripts\SetupComplete"
+    $ScriptsPath = $SetupCompletePath
+    if (Test-Path -Path "$ScriptsPath\SetupComplete.ps1.bak"){
+        copy-item -Path "$ScriptsPath\SetupComplete.ps1.bak" -Destination "$ScriptsPath\SetupComplete.ps1"
+    }
+}
+
 #iex (irm https://raw.githubusercontent.com/petermekes/OSDCloud_scripts/main/funtions.ps1)
 $ScriptName = 'functions'
 $ScriptVersion = '24.3.0.0'
@@ -855,7 +897,7 @@ Set-ExecutionPolicy Bypass -Force
 #WinPE Stuff
 if ($env:SystemDrive -eq 'X:') {
     #Create Custom SetupComplete on USBDrive, this will get copied and run during SetupComplete Phase thanks to OSD Function: Set-SetupCompleteOSDCloudUSB
-    #Set-SetupCompleteCreateStartHOPEonUSB
+    Set-SetupCompleteCreateStartHOPEonUSB
     
     Write-Host -ForegroundColor Green "Starting win11.garytown.com"
     #to Run boot OSDCloudUSB, at the PS Prompt: iex (irm win11.garytown.com)
@@ -973,21 +1015,21 @@ if (Test-path -path "x:\windows\system32\cmtrace.exe"){
 #Restart
 #restart-computer
 
-$text={Set-Location $env:ProgramFiles\WindowsPowerShell\Scripts\
+#$text={Set-Location $env:ProgramFiles\WindowsPowerShell\Scripts\
 #.\get-windowsautopilotinfo.ps1 -Online -Assign -groupTag '' -TenantId '' -AppId '' -AppSecret ''
-Invoke-CloudSecret pmapvault APJoinAPP
-Stop-Transcript
-Restart-Computer}
-$text1={Stop-Transcript}
-$FilePath= "C:\Windows\setup\scripts\setupcomplete.ps1"
-((Get-Content -Path $FilePath ) -replace "Stop-Computer",$text) | Set-Content -Path $FilePath
-((Get-Content -Path $FilePath ) -replace "Stop-Transcript",'') | Set-Content -Path $FilePath
+#Invoke-CloudSecret pmapvault APJoinAPP
+#Stop-Transcript
+#Restart-Computer}
+#$text1={Stop-Transcript}
+#$FilePath= "C:\Windows\setup\scripts\setupcomplete.ps1"
+#((Get-Content -Path $FilePath ) -replace "Stop-Computer",$text) | Set-Content -Path $FilePath
+#((Get-Content -Path $FilePath ) -replace "Stop-Transcript",'') | Set-Content -Path $FilePath
 
     # iex (irm https://raw.githubusercontent.com/petermekes/OSDCloud_scripts/main/win11.ps1)
 
     #Create Marker so it knows this is a "HOPE" computer - No longer need thanks to the custom setup complete above.
     #new-item -Path C:\OSDCloud\configs -Name hope.JSON -ItemType file
-    #Restore-SetupCompleteOriginal
+    Restore-SetupCompleteOriginal
     
 restart-computer
 }
