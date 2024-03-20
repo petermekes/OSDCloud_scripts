@@ -6,7 +6,7 @@ Creates Setup Complete Files
 $ScriptName = 'hope.garytown.com'
 $ScriptVersion = '24.1.22.1'
 
-function Set-SetupCompleteCreateStartHOPEonUSB {
+<#function Set-SetupCompleteCreateStartHOPEonUSB {
     
     $OSDCloudUSB = Get-Volume.usb | Where-Object {($_.FileSystemLabel -match 'OSDCloud') -or ($_.FileSystemLabel -match 'BHIMAGE')} | Select-Object -First 1
     $SetupCompletePath = "$($OSDCloudUSB.DriveLetter):\OSDCloud\Config\Scripts\SetupComplete"
@@ -47,7 +47,7 @@ Function Restore-SetupCompleteOriginal {
         copy-item -Path "$ScriptsPath\SetupComplete.ps1.bak" -Destination "$ScriptsPath\SetupComplete.ps1"
     }
 }
-
+#>
 #iex (irm https://raw.githubusercontent.com/petermekes/OSDCloud_scripts/main/funtions.ps1)
 $ScriptName = 'functions'
 $ScriptVersion = '24.3.0.0'
@@ -897,7 +897,7 @@ Set-ExecutionPolicy Bypass -Force
 #WinPE Stuff
 if ($env:SystemDrive -eq 'X:') {
     #Create Custom SetupComplete on USBDrive, this will get copied and run during SetupComplete Phase thanks to OSD Function: Set-SetupCompleteOSDCloudUSB
-    Set-SetupCompleteCreateStartHOPEonUSB
+    #Set-SetupCompleteCreateStartHOPEonUSB
     
     Write-Host -ForegroundColor Green "Starting win11.garytown.com"
     #to Run boot OSDCloudUSB, at the PS Prompt: iex (irm win11.garytown.com)
@@ -1029,7 +1029,7 @@ if (Test-path -path "x:\windows\system32\cmtrace.exe"){
 
     #Create Marker so it knows this is a "HOPE" computer - No longer need thanks to the custom setup complete above.
     #new-item -Path C:\OSDCloud\configs -Name hope.JSON -ItemType file
-    Restore-SetupCompleteOriginal
+    #Restore-SetupCompleteOriginal
     
 restart-computer
 }
