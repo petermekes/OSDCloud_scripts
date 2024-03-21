@@ -39,8 +39,9 @@ function Set-SetupCompleteCreateStartHOPEonUSB {
     Add-Content -path $PSFilePath "Write-Output 'Starting SetupComplete HOPE Script Process'"
     Add-Content -path $PSFilePath "Write-Output 'iex (irm hope.garytown.com)'"
     Add-Content -path $PSFilePath 'iex (irm hope.garytown.com)'
-    Rename-item $PSFilePath -newname "$PSFilePath.bak1"
-    Rename-item "$PSFilePath.bak" -newname $PSFilePath
+    Copy-Item "$SetupCompletePath\Setupcomplete.ps1.bak" -Destination "C:\Windows\Setup\Scripts\SetupComplete.ps1" 
+    #Rename-item $PSFilePath -newname "$PSFilePath.bak1"
+    #Rename-item "$PSFilePath.bak" -newname $PSFilePath
 }
 
 <#
