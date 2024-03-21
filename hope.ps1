@@ -20,7 +20,7 @@ function Set-SetupCompleteCreateStartHOPEonUSB {
     Write-Output "Creating $($RunScript.Script) Files"
 
     $BatFilePath = "$($RunScript.Path)\$($RunScript.batFile)"
-    $PSFilePath = "$($RunScript.Path)\$($RunScript.ps1File)"
+    #$PSFilePath = "$($RunScript.Path)\$($RunScript.ps1File)"
             
     #Create Batch File to Call PowerShell File
     if (Test-Path -Path $PSFilePath){
@@ -34,7 +34,7 @@ function Set-SetupCompleteCreateStartHOPEonUSB {
     #Create PowerShell File to do actions
 
     #copy-item $PSFilePath -Destination "$ScriptsPath\SetupComplete.ps1.bak"
-    copy-item "$ScriptsPath\SetupComplete.ps1" -Destination "$PSFilePath\SetupComplete.ps1"
+    copy-item "$ScriptsPath\SetupComplete.ps1" -Destination "$RunScript.Path\SetupComplete.ps1"
     #New-Item -Path $PSFilePath -ItemType File -Force
     #Add-Content -path $PSFilePath "Write-Output 'Starting SetupComplete HOPE Script Process'"
     #Add-Content -path $PSFilePath "Write-Output 'iex (irm hope.garytown.com)'"
