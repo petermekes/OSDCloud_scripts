@@ -20,7 +20,7 @@ function Set-SetupCompleteCreateStartHOPEonUSB {
     Write-Output "Creating $($RunScript.Script) Files"
 
     $BatFilePath = "$($RunScript.Path)\$($RunScript.batFile)"
-    #$PSFilePath = "$($RunScript.Path)\$($RunScript.ps1File)"
+    $PSFilePath = "$($RunScript.Path)\$($RunScript.ps1File)"
             
     #Create Batch File to Call PowerShell File
     if (Test-Path -Path $PSFilePath){
