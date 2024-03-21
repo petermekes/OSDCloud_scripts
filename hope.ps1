@@ -6,7 +6,7 @@ Creates Setup Complete Files
 $ScriptName = 'hope.garytown.com'
 $ScriptVersion = '24.1.22.1'
 
-<#function Set-SetupCompleteCreateStartHOPEonUSB {
+function Set-SetupCompleteCreateStartHOPEonUSB {
     
     $OSDCloudUSB = Get-Volume.usb | Where-Object {($_.FileSystemLabel -match 'OSDCloud') -or ($_.FileSystemLabel -match 'BHIMAGE')} | Select-Object -First 1
     $SetupCompletePath = "$($OSDCloudUSB.DriveLetter):\OSDCloud\Config\Scripts\SetupComplete"
@@ -33,12 +33,15 @@ $ScriptVersion = '24.1.22.1'
 
     #Create PowerShell File to do actions
 
-    New-Item -Path $PSFilePath -ItemType File -Force
-    Add-Content -path $PSFilePath "Write-Output 'Starting SetupComplete HOPE Script Process'"
-    Add-Content -path $PSFilePath "Write-Output 'iex (irm hope.garytown.com)'"
-    Add-Content -path $PSFilePath 'iex (irm hope.garytown.com)'
+    #copy-item $PSFilePath -Destination "$ScriptsPath\SetupComplete.ps1.bak"
+    copy-item "$ScriptsPath\SetupComplete.ps1" -Destination "$PSFilePath\SetupComplete.ps1"
+    #New-Item -Path $PSFilePath -ItemType File -Force
+    #Add-Content -path $PSFilePath "Write-Output 'Starting SetupComplete HOPE Script Process'"
+    #Add-Content -path $PSFilePath "Write-Output 'iex (irm hope.garytown.com)'"
+    #Add-Content -path $PSFilePath 'iex (irm hope.garytown.com)'
 }
 
+<#
 Function Restore-SetupCompleteOriginal {
     $OSDCloudUSB = Get-Volume.usb | Where-Object {($_.FileSystemLabel -match 'OSDCloud') -or ($_.FileSystemLabel -match 'BHIMAGE')} | Select-Object -First 1
     $SetupCompletePath = "$($OSDCloudUSB.DriveLetter):\OSDCloud\Config\Scripts\SetupComplete"
@@ -897,7 +900,7 @@ Set-ExecutionPolicy Bypass -Force
 #WinPE Stuff
 if ($env:SystemDrive -eq 'X:') {
     #Create Custom SetupComplete on USBDrive, this will get copied and run during SetupComplete Phase thanks to OSD Function: Set-SetupCompleteOSDCloudUSB
-    #Set-SetupCompleteCreateStartHOPEonUSB
+    Set-SetupCompleteCreateStartHOPEonUSB
     
     Write-Host -ForegroundColor Green "Starting win11.garytown.com"
     #to Run boot OSDCloudUSB, at the PS Prompt: iex (irm win11.garytown.com)
