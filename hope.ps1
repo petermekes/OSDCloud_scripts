@@ -904,7 +904,8 @@ Set-ExecutionPolicy Bypass -Force
 #WinPE Stuff
 if ($env:SystemDrive -eq 'X:') {
     #Create Custom SetupComplete on USBDrive, this will get copied and run during SetupComplete Phase thanks to OSD Function: Set-SetupCompleteOSDCloudUSB
-    Set-SetupCompleteCreateStartHOPEonUSB
+    #Set-SetupCompleteCreateStartHOPEonUSB
+    Set-SetupCompleteOSDCloudUSB
     
     Write-Host -ForegroundColor Green "Starting win11.garytown.com"
     #to Run boot OSDCloudUSB, at the PS Prompt: iex (irm win11.garytown.com)
@@ -1036,8 +1037,8 @@ if (Test-path -path "x:\windows\system32\cmtrace.exe"){
 
     #Create Marker so it knows this is a "HOPE" computer - No longer need thanks to the custom setup complete above.
     #new-item -Path C:\OSDCloud\configs -Name hope.JSON -ItemType file
-    Restore-SetupCompleteOriginal
-copy-item "C:\OSDCloud\Scripts\SetupComplete\SetupComplete.ps1.txt" -Destination "C:\Windows\Setup\Scripts\SetupComplete.ps1"    
+    #Restore-SetupCompleteOriginal
+#copy-item "C:\OSDCloud\Scripts\SetupComplete\SetupComplete.ps1.txt" -Destination "C:\Windows\Setup\Scripts\SetupComplete.ps1"    
 restart-computer
 }
 
