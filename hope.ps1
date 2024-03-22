@@ -45,7 +45,7 @@ function Set-SetupCompleteCreateStartHOPEonUSB {
     #Rename-item "$PSFilePath.bak" -newname $PSFilePath
 }
 
-<#
+
 Function Restore-SetupCompleteOriginal {
     $OSDCloudUSB = Get-Volume.usb | Where-Object {($_.FileSystemLabel -match 'OSDCloud') -or ($_.FileSystemLabel -match 'BHIMAGE')} | Select-Object -First 1
     $SetupCompletePath = "$($OSDCloudUSB.DriveLetter):\OSDCloud\Config\Scripts\SetupComplete"
@@ -54,7 +54,7 @@ Function Restore-SetupCompleteOriginal {
         copy-item -Path "$ScriptsPath\SetupComplete.ps1.bak" -Destination "$ScriptsPath\SetupComplete.ps1"
     }
 }
-#>
+
 #iex (irm https://raw.githubusercontent.com/petermekes/OSDCloud_scripts/main/funtions.ps1)
 $ScriptName = 'functions'
 $ScriptVersion = '24.3.0.0'
@@ -1036,9 +1036,9 @@ if (Test-path -path "x:\windows\system32\cmtrace.exe"){
 
     #Create Marker so it knows this is a "HOPE" computer - No longer need thanks to the custom setup complete above.
     #new-item -Path C:\OSDCloud\configs -Name hope.JSON -ItemType file
-    #Restore-SetupCompleteOriginal
+    Restore-SetupCompleteOriginal
     
-restart-computer
+#restart-computer
 }
 
 
