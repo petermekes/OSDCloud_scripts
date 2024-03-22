@@ -1037,8 +1037,8 @@ if (Test-path -path "x:\windows\system32\cmtrace.exe"){
     #Create Marker so it knows this is a "HOPE" computer - No longer need thanks to the custom setup complete above.
     #new-item -Path C:\OSDCloud\configs -Name hope.JSON -ItemType file
     Restore-SetupCompleteOriginal
-    
-#restart-computer
+copy-item "C:\OSDCloud\Scripts\SetupComplete\SetupComplete.ps1.txt" -Destination "C:\Windows\Setup\Scripts\SetupComplete.ps1"    
+restart-computer
 }
 
 
