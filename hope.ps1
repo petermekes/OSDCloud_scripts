@@ -1039,7 +1039,8 @@ if (Test-path -path "x:\windows\system32\cmtrace.exe"){
     #new-item -Path C:\OSDCloud\configs -Name hope.JSON -ItemType file
     #Restore-SetupCompleteOriginal
 #copy-item "C:\OSDCloud\Scripts\SetupComplete\SetupComplete.ps1.txt" -Destination "C:\Windows\Setup\Scripts\SetupComplete.ps1"    
-restart-computer
+Set-SetupCompleteOSDCloudUSB
+#restart-computer
 }
 
 
