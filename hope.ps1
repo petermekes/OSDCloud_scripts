@@ -3,63 +3,8 @@ Loads Functions
 Creates Setup Complete Files
 #>
 
-$ScriptName = 'hope.garytown.com'
-$ScriptVersion = '24.1.22.1'
-
-function Set-SetupCompleteCreateStartHOPEonUSB {
-    
-    $OSDCloudUSB = Get-Volume.usb | Where-Object {($_.FileSystemLabel -match 'OSDCloud') -or ($_.FileSystemLabel -match 'BHIMAGE')} | Select-Object -First 1
-    $SetupCompletePath = "$($OSDCloudUSB.DriveLetter):\OSDCloud\Config\Scripts\SetupComplete"
-    $ScriptsPath = $SetupCompletePath
-
-    if (!(Test-Path -Path $ScriptsPath)){New-Item -Path $ScriptsPath} 
-
-    $RunScript = @(@{ Script = "SetupComplete"; BatFile = 'SetupComplete.cmd'; ps1file = 'SetupComplete.ps1';Type = 'Setup'; Path = "$ScriptsPath"})
-
-
-    Write-Output "Creating $($RunScript.Script) Files"
-
-    $BatFilePath = "$($RunScript.Path)\$($RunScript.batFile)"
-    $PSFilePath = "$($RunScript.Path)\$($RunScript.ps1File)"
-            
-    #Create Batch File to Call PowerShell File
-    #if (Test-Path -Path $PSFilePath){
-    #    copy-item $PSFilePath -Destination "$ScriptsPath\SetupComplete.ps1.bak"
-    #}        
-    New-Item -Path $BatFilePath -ItemType File -Force
-    $CustomActionContent = New-Object system.text.stringbuilder
-    [void]$CustomActionContent.Append('%windir%\System32\WindowsPowerShell\v1.0\powershell.exe -ExecutionPolicy ByPass -File C:\OSDCloud\Scripts\SetupComplete\SetupComplete.ps1')
-    Add-Content -Path $BatFilePath -Value $CustomActionContent.ToString()
-
-    #Create PowerShell File to do actions
-
-    #copy-item $PSFilePath -Destination "$ScriptsPath\SetupComplete.ps1.bak"
-    #copy-item "$ScriptsPath\SetupComplete.ps1" -Destination "$RunScript.Path\SetupComplete.ps1"
-    #New-Item -Path $PSFilePath -ItemType File -Force
-    Add-Content -path $PSFilePath "Write-Output 'Starting SetupComplete HOPE Script Process'"
-    Add-Content -path $PSFilePath "Write-Output 'iex (irm hope.garytown.com)'"
-    Add-Content -path $PSFilePath 'iex (irm hope.garytown.com)'
-    #copy-item -Path "$ScriptsPath\SetupComplete.ps1.txt" -Destination "$ScriptsPath\SetupComplete.ps1"
-    #Copy-Item "$SetupCompletePath\Setupcomplete.ps1.txt" -Destination "C:\Windows\Setup\Scripts\SetupComplete.ps1" 
-    #Rename-item $PSFilePath -newname "$PSFilePath.bak1"
-    #Rename-item "$PSFilePath.bak" -newname $PSFilePath
-}
-
-
-Function Restore-SetupCompleteOriginal {
-    $OSDCloudUSB = Get-Volume.usb | Where-Object {($_.FileSystemLabel -match 'OSDCloud') -or ($_.FileSystemLabel -match 'BHIMAGE')} | Select-Object -First 1
-    $SetupCompletePath = "$($OSDCloudUSB.DriveLetter):\OSDCloud\Config\Scripts\SetupComplete"
-    $ScriptsPath = $SetupCompletePath
-    if (Test-Path -Path "$ScriptsPath\SetupComplete.ps1.bak"){
-        copy-item -Path "$ScriptsPath\SetupComplete.ps1.bak" -Destination "$ScriptsPath\SetupComplete.ps1"
-    }
-}
-
-#iex (irm https://raw.githubusercontent.com/petermekes/OSDCloud_scripts/main/funtions.ps1)
-$ScriptName = 'functions'
-$ScriptVersion = '24.3.0.0'
 Set-ExecutionPolicy Bypass -Force
-Write-Host -ForegroundColor Green "[+] $ScriptName $ScriptVersion"
+
 
 Write-Host -ForegroundColor Green "[+] Function Start-DISMFromOSDCloudUSB"
 Function Test-DISMFromOSDCloudUSB {
@@ -840,63 +785,7 @@ if ((Get-CimInstance -ClassName Win32_ComputerSystem).Manufacturer -match "Lenov
     }
 }
 
-<#region functions
-function Set-SetupCompleteCreateStartHOPEonUSB {
-    
-    $OSDCloudUSB = Get-Volume.usb | Where-Object {($_.FileSystemLabel -match 'OSDCloud') -or ($_.FileSystemLabel -match 'BHIMAGE')} | Select-Object -First 1
-    $SetupCompletePath = "$($OSDCloudUSB.DriveLetter):\OSDCloud\Config\Scripts\SetupComplete"
-    $ScriptsPath = $SetupCompletePath
-
-    if (!(Test-Path -Path $ScriptsPath)){New-Item -Path $ScriptsPath} 
-
-    $RunScript = @(@{ Script = "SetupComplete"; BatFile = 'SetupComplete.cmd'; ps1file = 'SetupComplete.ps1';Type = 'Setup'; Path = "$ScriptsPath"})
-
-
-    Write-Output "Creating $($RunScript.Script) Files"
-
-    $BatFilePath = "$($RunScript.Path)\$($RunScript.batFile)"
-    $PSFilePath = "$($RunScript.Path)\$($RunScript.ps1File)"
-            
-    #Create Batch File to Call PowerShell File
-    if (Test-Path -Path $PSFilePath){
-        copy-item $PSFilePath -Destination "$ScriptsPath\SetupComplete.ps1.bak"
-    }        
-    New-Item -Path $BatFilePath -ItemType File -Force
-    $CustomActionContent = New-Object system.text.stringbuilder
-    [void]$CustomActionContent.Append('%windir%\System32\WindowsPowerShell\v1.0\powershell.exe -ExecutionPolicy ByPass -File C:\OSDCloud\Scripts\SetupComplete\SetupComplete.ps1')
-    Add-Content -Path $BatFilePath -Value $CustomActionContent.ToString()
-
-    #Create PowerShell File to do actions
-
-    New-Item -Path $PSFilePath -ItemType File -Force
-    Add-Content -path $PSFilePath "Write-Output 'Starting SetupComplete HOPE Script Process'"
-    Add-Content -path $PSFilePath "Write-Output 'iex (irm https://raw.githubusercontent.com/petermekes/OSDCloud_scripts/main/hope.ps1)'"
-    Add-Content -path $PSFilePath 'iex (irm https://raw.githubusercontent.com/petermekes/OSDCloud_scripts/main/hope.ps1)'
-}
-
-Function Restore-SetupCompleteOriginal {
-    $OSDCloudUSB = Get-Volume.usb | Where-Object {($_.FileSystemLabel -match 'OSDCloud') -or ($_.FileSystemLabel -match 'BHIMAGE')} | Select-Object -First 1
-    $SetupCompletePath = "$($OSDCloudUSB.DriveLetter):\OSDCloud\Config\Scripts\SetupComplete"
-    $ScriptsPath = $SetupCompletePath
-    if (Test-Path -Path "$ScriptsPath\SetupComplete.ps1.bak"){
-        copy-item -Path "$ScriptsPath\SetupComplete.ps1.bak" -Destination "$ScriptsPath\SetupComplete.ps1"
-    }
-}
-#endregion
-#>
-
-
-
 Write-Host -ForegroundColor Green "[+] $ScriptName $ScriptVersion ($WindowsPhase Phase)"
-
-
-
-<#
-if ($env:SystemDrive -ne 'X:') {
-    Write-Host -ForegroundColor Yellow "Restart after Script Completes?"
-    $Restart = Read-Host "y or n, then Enter"
-}
-#>
 
 
 Set-ExecutionPolicy Bypass -Force
@@ -909,21 +798,6 @@ if ($env:SystemDrive -eq 'X:') {
     
     Write-Host -ForegroundColor Green "Starting win11.garytown.com"
     #to Run boot OSDCloudUSB, at the PS Prompt: iex (irm win11.garytown.com)
-
-$ScriptName = 'win11'
-$ScriptVersion = '24.03.00.00'
-Write-Host -ForegroundColor Green "$ScriptName $ScriptVersion"
-#iex (irm functions.garytown.com) #Add custom functions used in Script Hosting in GitHub
-#iex (irm functions.osdcloud.com) #Add custom fucntions from OSDCloud
-
-<# Offline Driver Details
-If you extract Driver Packs to your Flash Drive, you can DISM them in while in WinPE and it will make the process much faster, plus ensure driver support for first Boot
-Extract to: OSDCLoudUSB:\OSDCloud\DriverPacks\DISM\$ComputerManufacturer\$ComputerProduct
-Use OSD Module to determine Vars
-$ComputerProduct = (Get-MyComputerProduct)
-$ComputerManufacturer = (Get-MyComputerManufacturer -Brief)
-#>
-
 
 
 #Variables to define the Windows OS / Edition etc to be applied during OSDCloud
@@ -950,9 +824,6 @@ $Global:MyOSDCloud = [ordered]@{
     SyncMSUpCatDriverUSB = [bool]$true
 }
 
-#Testing MS Update Catalog Driver Sync
-#$Global:MyOSDCloud.DriverPackName = 'Microsoft Update Catalog'
-
 #Used to Determine Driver Pack
 $DriverPack = Get-OSDCloudDriverPack -Product $Product -OSVersion $OSVersion -OSReleaseID $OSReleaseID
 
@@ -960,19 +831,6 @@ if ($DriverPack){
     $Global:MyOSDCloud.DriverPackName = $DriverPack.Name
 }
 
-<#If Drivers are expanded on the USB Drive, disable installing a Driver Pack
-if (Test-DISMFromOSDCloudUSB -eq $true){
-    Write-Host "Found Driver Pack Extracted on Cloud USB Flash Drive, disabling Driver Download via OSDCloud" -ForegroundColor Green
-    if ($Global:MyOSDCloud.SyncMSUpCatDriverUSB -eq $true){
-        write-host "Setting DriverPackName to 'Microsoft Update Catalog'"
-        $Global:MyOSDCloud.DriverPackName = 'Microsoft Update Catalog'
-    }
-    else {
-        write-host "Setting DriverPackName to 'None'"
-        $Global:MyOSDCloud.DriverPackName = "None"
-    }
-}
-#>
 #Enable HPIA | Update HP BIOS | Update HP TPM
  
 if (Test-HPIASupport){
@@ -985,9 +843,6 @@ if (Test-HPIASupport){
     iex (irm https://raw.githubusercontent.com/gwblok/garytown/master/OSD/CloudOSD/Manage-HPBiosSettings.ps1)
     Manage-HPBiosSettings -SetSettings
 }
-
-
-
 
 #write variables to console
 Write-Output $Global:MyOSDCloud
@@ -1004,105 +859,13 @@ Start-OSDCloud -OSName $OSName -OSEdition $OSEdition -OSActivation $OSActivation
 
 write-host "OSDCloud Process Complete, Running Custom Actions From Script Before Reboot" -ForegroundColor Green
 
-<#
-if (Test-DISMFromOSDCloudUSB){
-    Start-DISMFromOSDCloudUSB
-}
-#>
-
-#Used in Testing "Beta Gary Modules which I've updated on the USB Stick"
-#$OfflineModulePath = (Get-ChildItem -Path "C:\Program Files\WindowsPowerShell\Modules\osd" | Where-Object {$_.Attributes -match "Directory"} | select -Last 1).fullname
-#write-output "Updating $OfflineModulePath using $ModulePath"
-#copy-item "$ModulePath\*" "$OfflineModulePath"  -Force -Recurse
 
 #Copy CMTrace Local:
 if (Test-path -path "x:\windows\system32\cmtrace.exe"){
     copy-item "x:\windows\system32\cmtrace.exe" -Destination "C:\Windows\System\cmtrace.exe"
 }
 
-#Restart
-#restart-computer
-
-#$text={Set-Location $env:ProgramFiles\WindowsPowerShell\Scripts\
-#.\get-windowsautopilotinfo.ps1 -Online -Assign -groupTag '' -TenantId '' -AppId '' -AppSecret ''
-#Invoke-CloudSecret pmapvault APJoinAPP
-#Stop-Transcript
-#Restart-Computer}
-#$text1={Stop-Transcript}
-#$FilePath= "C:\Windows\setup\scripts\setupcomplete.ps1"
-#((Get-Content -Path $FilePath ) -replace "Stop-Computer",$text) | Set-Content -Path $FilePath
-#((Get-Content -Path $FilePath ) -replace "Stop-Transcript",'') | Set-Content -Path $FilePath
-
-    # iex (irm https://raw.githubusercontent.com/petermekes/OSDCloud_scripts/main/win11.ps1)
-
-    #Create Marker so it knows this is a "HOPE" computer - No longer need thanks to the custom setup complete above.
-    #new-item -Path C:\OSDCloud\configs -Name hope.JSON -ItemType file
-    #Restore-SetupCompleteOriginal
-#copy-item "C:\OSDCloud\Scripts\SetupComplete\SetupComplete.ps1.txt" -Destination "C:\Windows\Setup\Scripts\SetupComplete.ps1"    
 Set-SetupCompleteOSDCloudUSB
-#restart-computer
+restart-computer
 }
 
-
-
-#Non-WinPE
-if ($env:SystemDrive -ne 'X:') {
-    #Remove Personal Teams
-    Write-Host -ForegroundColor Gray "**Removing Default Chat Tool**" 
-    try {
-        iex (irm https://raw.githubusercontent.com/petermekes/OSDCloud_scripts/main/removechat.ps1)
-    }
-    catch {}
-    # Add Hope PDF to Desktop
-    #Write-Host -ForegroundColor Gray "**Adding HOPE PDF to Desktop**" 
-    #try {
-    #    Invoke-WebRequest -UseBasicParsing -Uri "https://raw.githubusercontent.com/gwblok/garytown/85ad154fa2964ea4757a458dc5c91aea5bf483c6/HopeForUsedComputers/Hope%20for%20Used%20Computers%20PDF.pdf" -OutFile "C:\Users\Public\Desktop\Hope For Used Computers.pdf"
-    #}
-    #catch {}
-
-    #Set DO
-    #Set-DOPoliciesGPORegistry
-    
-    Write-Host -ForegroundColor Gray "**Running Test**" 
-    iex (irm https://raw.githubusercontent.com/petermekes/OSDCloud_scripts/main/test.ps1)
-     
-    #Set Time Zone to Automatic Update
-    
-    Write-Host -ForegroundColor Gray "**Setting Time Zone for Auto Update**" 
-    Enable-AutoZimeZoneUpdate
-    Write-Host -ForegroundColor Gray "**Setting Default Profile Personal Preferences**" 
-    Set-DefaultProfilePersonalPref
-    
-    #Try to prevent crap from auto installing
-    Write-Host -ForegroundColor Gray "**Disabling Cloud Content**" 
-    Disable-CloudContent
-    
-    #Set Win11 Bypasses
-    Write-Host -ForegroundColor Gray "**Enabling Win11 Bypasses**" 
-    Set-Win11ReqBypassRegValues
-    
-    #Windows Updates
-    Write-Host -ForegroundColor Gray "**Running Defender Updates**"
-    Update-DefenderStack
-    Write-Host -ForegroundColor Gray "**Running Windows Updates**"
-    Start-WindowsUpdate
-    Write-Host -ForegroundColor Gray "**Running Driver Updates**"
-    Start-WindowsUpdateDriver
-
-    #Store Updates
-    Write-Host -ForegroundColor Gray "**Running Winget Updates**"
-    Write-Host -ForegroundColor Gray "Invoke-UpdateScanMethodMSStore"
-    Invoke-UpdateScanMethodMSStore
-    Write-Host -ForegroundColor Gray "winget upgrade --all --accept-package-agreements --accept-source-agreements"
-    winget upgrade --all --accept-package-agreements --accept-source-agreements
-
-    #Modified Version of Andrew's Debloat Script
-    Write-Host -ForegroundColor Gray "**Running Debloat Script**" 
-    iex (irm https://raw.githubusercontent.com/gwblok/garytown/master/Dev/CloudScripts/Debloat.ps1)
-
-    #Set Time Zone
-    Write-Host -ForegroundColor Gray "**Setting TimeZone based on IP**"
-    Set-TimeZoneFromIP
-
-    Write-Host -ForegroundColor Gray "**Completed Hope.garytown.com sub script**" 
-}
