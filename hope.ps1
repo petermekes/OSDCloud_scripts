@@ -23,9 +23,9 @@ function Set-SetupCompleteCreateStartHOPEonUSB {
     $PSFilePath = "$($RunScript.Path)\$($RunScript.ps1File)"
             
     #Create Batch File to Call PowerShell File
-    if (Test-Path -Path $PSFilePath){
-        copy-item $PSFilePath -Destination "$ScriptsPath\SetupComplete.ps1.bak"
-    }        
+    #if (Test-Path -Path $PSFilePath){
+    #    copy-item $PSFilePath -Destination "$ScriptsPath\SetupComplete.ps1.bak"
+    #}        
     New-Item -Path $BatFilePath -ItemType File -Force
     $CustomActionContent = New-Object system.text.stringbuilder
     [void]$CustomActionContent.Append('%windir%\System32\WindowsPowerShell\v1.0\powershell.exe -ExecutionPolicy ByPass -File C:\OSDCloud\Scripts\SetupComplete\SetupComplete.ps1')
@@ -35,11 +35,11 @@ function Set-SetupCompleteCreateStartHOPEonUSB {
 
     #copy-item $PSFilePath -Destination "$ScriptsPath\SetupComplete.ps1.bak"
     #copy-item "$ScriptsPath\SetupComplete.ps1" -Destination "$RunScript.Path\SetupComplete.ps1"
-    New-Item -Path $PSFilePath -ItemType File -Force
+    #New-Item -Path $PSFilePath -ItemType File -Force
     Add-Content -path $PSFilePath "Write-Output 'Starting SetupComplete HOPE Script Process'"
     Add-Content -path $PSFilePath "Write-Output 'iex (irm hope.garytown.com)'"
     Add-Content -path $PSFilePath 'iex (irm hope.garytown.com)'
-    copy-item -Path "$ScriptsPath\SetupComplete.ps1.txt" -Destination "$ScriptsPath\SetupComplete.ps1"
+    #copy-item -Path "$ScriptsPath\SetupComplete.ps1.txt" -Destination "$ScriptsPath\SetupComplete.ps1"
     #Copy-Item "$SetupCompletePath\Setupcomplete.ps1.txt" -Destination "C:\Windows\Setup\Scripts\SetupComplete.ps1" 
     #Rename-item $PSFilePath -newname "$PSFilePath.bak1"
     #Rename-item "$PSFilePath.bak" -newname $PSFilePath
