@@ -1,3 +1,26 @@
+#================================================
+# Window Functions
+# Minimize Command and PowerShell Windows
+#================================================
+$Script:showWindowAsync = Add-Type -MemberDefinition @"
+[DllImport("user32.dll")]
+public static extern bool ShowWindowAsync(IntPtr hWnd, int nCmdShow);
+"@ -Name "Win32ShowWindowAsync" -Namespace Win32Functions -PassThru
+function Hide-CmdWindow() {
+    $CMDProcess = Get-Process -Name cmd -ErrorAction Ignore
+    foreach ($Item in $CMDProcess) {
+        $null = $showWindowAsync::ShowWindowAsync((Get-Process -Id $Item.id).MainWindowHandle, 2)
+    }
+}
+function Hide-PowershellWindow() {
+    $null = $showWindowAsync::ShowWindowAsync((Get-Process -Id $pid).MainWindowHandle, 2)
+}
+function Show-PowershellWindow() {
+    $null = $showWindowAsync::ShowWindowAsync((Get-Process -Id $pid).MainWindowHandle, 10)
+}
+Hide-CmdWindow
+Hide-PowershellWindow
+
 Add-Type -AssemblyName System.Windows.Forms
 Add-Type -AssemblyName System.Drawing
 
@@ -48,4 +71,3 @@ if ($result -eq [System.Windows.Forms.DialogResult]::OK)
     $x = $listBox.SelectedItem
     $x
 }
-iex (irm https://raw.githubusercontent.com/petermekes/OSDCloud_scripts/main/hope.ps1)
