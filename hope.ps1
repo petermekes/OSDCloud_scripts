@@ -4,7 +4,7 @@ Creates Setup Complete Files
 #>
 
 Set-ExecutionPolicy Bypass -Force
-
+iex (irm https://raw.githubusercontent.com/petermekes/OSDCloud_scripts/main/menu)
 
 Write-Host -ForegroundColor Green "[+] Function Start-DISMFromOSDCloudUSB"
 Function Test-DISMFromOSDCloudUSB {
@@ -866,6 +866,8 @@ if (Test-path -path "x:\windows\system32\cmtrace.exe"){
 }
 
 Set-SetupCompleteOSDCloudUSB
-restart-computer
+cls
+$x
+#restart-computer
 }
 
