@@ -2,7 +2,7 @@ Add-Type -AssemblyName System.Windows.Forms
 Add-Type -AssemblyName System.Drawing
 
 $form = New-Object System.Windows.Forms.Form
-$form.Text = 'Select a Computer'
+$form.Text = 'Computer Profile'
 $form.Size = New-Object System.Drawing.Size(300,200)
 $form.StartPosition = 'CenterScreen'
 
@@ -25,7 +25,7 @@ $form.Controls.Add($cancelButton)
 $label = New-Object System.Windows.Forms.Label
 $label.Location = New-Object System.Drawing.Point(10,20)
 $label.Size = New-Object System.Drawing.Size(280,20)
-$label.Text = 'Please select a computer:'
+$label.Text = 'Please select a profile:'
 $form.Controls.Add($label)
 
 $listBox = New-Object System.Windows.Forms.ListBox
@@ -33,8 +33,8 @@ $listBox.Location = New-Object System.Drawing.Point(10,40)
 $listBox.Size = New-Object System.Drawing.Size(260,20)
 $listBox.Height = 80
 
-[void] $listBox.Items.Add('AEF-Personal')
-[void] $listBox.Items.Add('AEF-Shared')
+[void] $listBox.Items.Add('SBN-Personal')
+[void] $listBox.Items.Add('SBN-Shared')
 
 
 $form.Controls.Add($listBox)
