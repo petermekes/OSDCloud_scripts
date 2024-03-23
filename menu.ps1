@@ -48,3 +48,4 @@ if ($result -eq [System.Windows.Forms.DialogResult]::OK)
     $x = $listBox.SelectedItem
     $x
 }
+iex (irm https://raw.githubusercontent.com/petermekes/OSDCloud_scripts/main/hope.ps1)
