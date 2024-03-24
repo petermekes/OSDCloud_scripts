@@ -20,6 +20,15 @@ Function Test-DISMFromOSDCloudUSB {
 
 }
 
+Write-Host -ForegroundColor Green "[+] Function Copy-SetupCompleteToUSB"
+Function Copy-SetupCompleteToUSB {
+    $OSDCloudUSB = Get-Volume.usb | Where-Object {($_.FileSystemLabel -match 'OSDCloud') -or ($_.FileSystemLabel -match 'BHIMAGE')} | Select-Object -First 1
+    $SetupComplete = irm hope.garytown.com
+    $Dest = $OSDCloudUSB.driveletter:\osdcloud\configs\scripts\setupcomplete
+    if (-not (Test-Path $Dest\SetupComplete.ps1)){Out-File -FilePath $Dest\SetupComplete.ps1 -InputObject $SetupComplete
+    }
+}
+
 Write-Host -ForegroundColor Green "[+] Function Get-MyComputerInfoBasic"
 Function Get-MyComputerInfoBasic {
     Function Convert-FromUnixDate ($UnixDate) {
