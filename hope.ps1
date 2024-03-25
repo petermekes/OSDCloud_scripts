@@ -20,17 +20,6 @@ Function Test-DISMFromOSDCloudUSB {
 
 }
 
-<#
-Write-Host -ForegroundColor Green "[+] Function Copy-SetupCompleteToUSB"
-Function Copy-SetupCompleteToUSB {
-    $OSDCloudUSB = Get-Volume.usb | Where-Object {($_.FileSystemLabel -match 'OSDCloud') -or ($_.FileSystemLabel -match 'BHIMAGE')} | Select-Object -First 1
-    $SetupComplete = irm hope.garytown.com
-    $Dest = $OSDCloudUSB.driveletter:\osdcloud\configs\scripts\setupcomplete
-    if (-not (Test-Path $Dest\SetupComplete.ps1)){Out-File -FilePath $Dest\SetupComplete.ps1 -InputObject $SetupComplete
-    }
-}
-#>
-
 Write-Host -ForegroundColor Green "[+] Function Get-MyComputerInfoBasic"
 Function Get-MyComputerInfoBasic {
     Function Convert-FromUnixDate ($UnixDate) {
@@ -795,8 +784,9 @@ if ((Get-CimInstance -ClassName Win32_ComputerSystem).Manufacturer -match "Lenov
         Import-Module LnvDeviceManagement -Force -Verbose
     }
 }
+#Write-Host -ForegroundColor Green "[+] $ScriptName $ScriptVersion ($WindowsPhase Phase)"
 
-Write-Host -ForegroundColor Green "[+] $ScriptName $ScriptVersion ($WindowsPhase Phase)"
+#== END Functions
 
 
 Set-ExecutionPolicy Bypass -Force
@@ -807,7 +797,7 @@ if ($env:SystemDrive -eq 'X:') {
     #Set-SetupCompleteCreateStartHOPEonUSB
     #Set-SetupCompleteOSDCloudUSB
     
-    Write-Host -ForegroundColor Green "Starting win11.garytown.com"
+    #Write-Host -ForegroundColor Green "Starting win11.garytown.com"
     #to Run boot OSDCloudUSB, at the PS Prompt: iex (irm win11.garytown.com)
 
 
@@ -877,8 +867,7 @@ if (Test-path -path "x:\windows\system32\cmtrace.exe"){
 }
 
 Set-SetupCompleteOSDCloudUSB
-#cls
-#$x
+
 restart-computer
 }
 
