@@ -54,8 +54,8 @@ $form.Controls.Add($label)
 $listBox = New-Object System.Windows.Forms.ListBox
 $listBox.Location = New-Object System.Drawing.Point(10,40)
 $listBox.Size = New-Object System.Drawing.Size(260,20)
-$listBox.Height = 80
-
+$listBox.Height = 120
+$listBox.Width  = 150
 [void] $listBox.Items.Add('SBN-Personal')
 [void] $listBox.Items.Add('SBN-Shared')
 
