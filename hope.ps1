@@ -805,7 +805,7 @@ Set-ExecutionPolicy Bypass -Force
 if ($env:SystemDrive -eq 'X:') {
     #Create Custom SetupComplete on USBDrive, this will get copied and run during SetupComplete Phase thanks to OSD Function: Set-SetupCompleteOSDCloudUSB
     #Set-SetupCompleteCreateStartHOPEonUSB
-    Set-SetupCompleteOSDCloudUSB
+    #Set-SetupCompleteOSDCloudUSB
     
     Write-Host -ForegroundColor Green "Starting win11.garytown.com"
     #to Run boot OSDCloudUSB, at the PS Prompt: iex (irm win11.garytown.com)
@@ -877,8 +877,8 @@ if (Test-path -path "x:\windows\system32\cmtrace.exe"){
 }
 
 Set-SetupCompleteOSDCloudUSB
-cls
-$x
+#cls
+#$x
 #restart-computer
 }
 
