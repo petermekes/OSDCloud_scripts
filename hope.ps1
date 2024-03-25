@@ -879,6 +879,6 @@ if (Test-path -path "x:\windows\system32\cmtrace.exe"){
 Set-SetupCompleteOSDCloudUSB
 #cls
 #$x
-#restart-computer
+restart-computer
 }
 
