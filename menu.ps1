@@ -26,7 +26,7 @@ Add-Type -AssemblyName System.Drawing
 
 $form = New-Object System.Windows.Forms.Form
 $form.Text = 'Computer Profile'
-$form.Size = New-Object System.Drawing.Size(300,200)
+$form.Size = New-Object System.Drawing.Size(500,400)
 $form.StartPosition = 'CenterScreen'
 
 $okButton = New-Object System.Windows.Forms.Button
@@ -54,8 +54,8 @@ $form.Controls.Add($label)
 $listBox = New-Object System.Windows.Forms.ListBox
 $listBox.Location = New-Object System.Drawing.Point(10,40)
 $listBox.Size = New-Object System.Drawing.Size(260,20)
-$listBox.Height = 120
-$listBox.Width  = 150
+$listBox.Height = 240
+$listBox.Width  = 300
 [void] $listBox.Items.Add('SBN-Personal')
 [void] $listBox.Items.Add('SBN-Shared')
 
@@ -72,3 +72,4 @@ if ($result -eq [System.Windows.Forms.DialogResult]::OK)
     #$x
 }
 Show-PowershellWindow
+
