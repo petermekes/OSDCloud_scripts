@@ -870,7 +870,7 @@ if (Test-path -path "x:\windows\system32\cmtrace.exe"){
 }
 
 Set-SetupCompleteOSDCloudUSB
-Copy-OSToUSB
+#Copy-OSToUSB
 restart-computer
 }
 
