@@ -870,6 +870,19 @@ if (Test-path -path "x:\windows\system32\cmtrace.exe"){
 
 Set-SetupCompleteOSDCloudUSB
 
+#Save Windows Image on USB 
+$OSDCloudUSB = Get-Volume.usb | Where-Object {($_.FileSystemLabel -match 'OSDCloud') -or ($_.FileSystemLabel -match 'BHIMAGE')} | Select-Object -First 1
+$DriverPath = "$($OSDCloudUSB.DriveLetter):\OSDCloud\OS\"
+$ImageFileName = Get-ChildItem -Path $DriverPath -Name *.esd
+$ImageFileNameDL = Get-ChildItem -Path 'C:\OSDCloud\OS' -Name *.esd 
+
+if($ImageFileName -ne $ImageFileNameDL){
+    Remove-Item -Path $DriverPath$ImageFileName -Force
+if (!(Test-Path $DriverPath)){New-Item -ItemType Directory -Path $DriverPath}
+if (!(Test-Path $DriverPath$ImageFileNameDL)){Copy-Item -Path C:\OSDCloud\OS\$ImageFileNameDL -Destination $DriverPath$ImageFileNameDL -Force}
+}
+#===================
+
 restart-computer
 }
 
