@@ -20,17 +20,6 @@ Function Test-DISMFromOSDCloudUSB {
 
 }
 
-Write-Host -ForegroundColor Green "[+] Function Copy-OSToUSB"
-Function Copy-OSToUSB {
- $OSDCloudUSB = Get-Volume.usb | Where-Object {($_.FileSystemLabel -match 'OSDCloud') -or ($_.FileSystemLabel -match 'BHIMAGE')} | Select-Object -First 1
- $DriverPath = "$($OSDCloudUSB.DriveLetter):\OSDCloud\OS\"
-    if (Test-Path $DriverPath)
-        {if (-not (Test-Path $DriverPath\$OSDCloudImage.FileName)){Copy-Item -Path C:\OSDCloud\OS\$OSDCloudImage.FileName -Destination $DriverPath
-        }
-    }    
-    
-    else { Return $false}
-}
 
 Write-Host -ForegroundColor Green "[+] Function Get-MyComputerInfoBasic"
 Function Get-MyComputerInfoBasic {
@@ -872,7 +861,8 @@ write-host "Start-OSDCloud -OSName $OSName -OSEdition $OSEdition -OSActivation $
 Start-OSDCloud -OSName $OSName -OSEdition $OSEdition -OSActivation $OSActivation -OSLanguage $OSLanguage
 
 write-host "OSDCloud Process Complete, Running Custom Actions From Script Before Reboot" -ForegroundColor Green
-
+$OSDCloudImage.FileName
+pause
 
 #Copy CMTrace Local:
 if (Test-path -path "x:\windows\system32\cmtrace.exe"){
