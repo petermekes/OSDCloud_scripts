@@ -69,7 +69,7 @@ $result = $form.ShowDialog()
 if ($result -eq [System.Windows.Forms.DialogResult]::OK)
 {
     $x = $listBox.SelectedItem
-    #$x
+    $GroupTag = $x
 }
 Show-PowershellWindow
 
