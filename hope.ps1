@@ -8,7 +8,6 @@ iex (irm https://raw.githubusercontent.com/petermekes/OSDCloud_scripts/main/menu
 
 Write-Host -Foreground Red $x
 
-pause 
 
 Write-Host -ForegroundColor Green "[+] Function Start-DISMFromOSDCloudUSB"
 Function Test-DISMFromOSDCloudUSB {
@@ -871,6 +870,8 @@ write-host "OSDCloud Process Complete, Running Custom Actions From Script Before
 if (Test-path -path "x:\windows\system32\cmtrace.exe"){
     copy-item "x:\windows\system32\cmtrace.exe" -Destination "C:\Windows\System\cmtrace.exe"
 }
+
+$GroupTag | Out-File -FilePath C:\Windows\DeviceType.txt
 
 Set-SetupCompleteOSDCloudUSB
 
