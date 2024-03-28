@@ -7,7 +7,7 @@ Set-ExecutionPolicy Bypass -Force
 iex (irm https://raw.githubusercontent.com/petermekes/OSDCloud_scripts/main/menu.ps1)
 
 Write-Host -Foreground Red $GroupTag
-pause
+sleep -Seconds 3
 
 Write-Host -ForegroundColor Green "[+] Function Start-DISMFromOSDCloudUSB"
 Function Test-DISMFromOSDCloudUSB {
