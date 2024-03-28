@@ -6,6 +6,10 @@ Creates Setup Complete Files
 Set-ExecutionPolicy Bypass -Force
 iex (irm https://raw.githubusercontent.com/petermekes/OSDCloud_scripts/main/menu.ps1)
 
+Write-Host -Foreground Red $x
+
+pause 
+
 Write-Host -ForegroundColor Green "[+] Function Start-DISMFromOSDCloudUSB"
 Function Test-DISMFromOSDCloudUSB {
     #region Initialize
