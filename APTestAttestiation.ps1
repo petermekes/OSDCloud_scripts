@@ -1,5 +1,5 @@
 $Global:Transcript = "$((Get-Date).ToString('yyyy-MM-dd-HHmmss'))-Test-Autopilotattestation.log"
-Start-Transcript -Path (Join-Path "$env:ProgramData\Microsoft\IntuneManagementExtension\Logs\OSD\" $Global:Transcript) -ErrorAction Ignore
+Start-Transcript -Path (Join-Path "C:\OSDCloud\Logs\" $Global:Transcript) -ErrorAction Ignore
 
 Write-Host "Execute Test Autopilot Attestation" -ForegroundColor Green
 
