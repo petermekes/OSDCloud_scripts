@@ -1,10 +1,8 @@
-$ScriptName = 'functions.garytown.com'
+$ScriptName = 'functions'
 $ScriptVersion = '24.3.7.2'
 Set-ExecutionPolicy Bypass -Force
 
 Write-Host -ForegroundColor Green "[+] $ScriptName $ScriptVersion"
-Pause
-#endregion
 
 Write-Host -ForegroundColor Green "[+] Function Start-DISMFromOSDCloudUSB"
 Function Test-DISMFromOSDCloudUSB {
