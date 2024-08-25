@@ -14,7 +14,7 @@ iex (irm https://raw.githubusercontent.com/petermekes/OSDCloud_scripts/main/func
 #++++++++++++++++++++++++++++++
 # Functions were here !!
 #++++++++++++++++++++++++++++++
-
+pause
 
 Set-ExecutionPolicy Bypass -Force
 
