@@ -1,3 +1,4 @@
+<#
 $Global:Transcript = "$((Get-Date).ToString('yyyy-MM-dd-HHmmss'))-Set-KeyboardLanguage.log"
 Start-Transcript -Path (Join-Path "$env:ProgramData\Microsoft\IntuneManagementExtension\Logs\OSD\" $Global:Transcript) -ErrorAction Ignore
 
@@ -20,3 +21,17 @@ $LanguageList.Remove(($LanguageList | Where-Object LanguageTag -like 'en-US'))
 Set-WinUserLanguageList $LanguageList -Force
 
 Stop-Transcript
+#>
+
+if ($GroupTag -eq 'TF-NL'){$Language = "nl-US"}
+if ($GroupTag -eq 'TF-BE'){$Language = "fr-BE"}
+if ($GroupTag -eq 'TF-DE'){$Language = "de-DE"}
+if ($GroupTag -eq 'TF-LU'){$Language = "lb"}
+
+Write-Host -ForegroundColor Green "Set keyboard language to $Language"
+
+$LanguageLists = Get-WinUserLanguageList
+LanguageLists.Add("$Language")
+
+Set-WinUserLanguageList $LanguageLists -Force
+Start-Sleep -Seconds 5
