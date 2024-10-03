@@ -31,7 +31,7 @@ if ($GroupTag -eq 'TF-LU'){$Language = "lb"}
 if ($GroupTag -eq 'TF-NL'){
         $Language = 'nl-US'
         $code = '0409:00000409' 
-        $code2 = '080C'
+        $code2 = '0409'
         }
 if ($GroupTag -eq 'TF-BE'){
         $Language = 'fr-BE'
@@ -41,22 +41,22 @@ if ($GroupTag -eq 'TF-BE'){
 if ($GroupTag -eq 'TF-DE'){
         $Language = 'de-DE'
         $code = '0407:00000407' 
-        $code2 = '080C'
+        $code2 = '0407'
         }
 if ($GroupTag -eq 'TF-LU'){
         $Language = 'lb'
-        $code = '080C:0000080C' 
-        $code2 = '080C'
+        $code = '046e:0000046e' 
+        $code2 = '046e'
         }
 
 Write-Host -ForegroundColor Green "Set keyboard language to $Language"
 
-reg add "HKCU\Control Panel\International\User Profile\fr-BE" /v 080C:0000080c /t REG_DWORD /d 1 /f
-reg add "HKCU\Control Panel\International\User Profile" /v InputMethodOverride /t REG_SZ /d "080C:0000080c" /f
+reg add "HKCU\Control Panel\International\User Profile\$Language" /v $code /t REG_DWORD /d 1 /f
+reg add "HKCU\Control Panel\International\User Profile" /v InputMethodOverride /t REG_SZ /d $code /f
 reg delete "HKCU\Control Panel\International\User Profile System Backup\en-US" /va /f
-reg add "HKCU\Control Panel\International\User Profile System Backup\fr-BE" /v 080C:0000080c /t REG_DWORD /d 1 /f
+reg add "HKCU\Control Panel\International\User Profile System Backup\$Language" /v $code /t REG_DWORD /d 1 /f
 reg delete "HKCU\Keyboard Layout\Preload" /va /f
-reg add "HKCU\Keyboard Layout\Preload" /v 1 /t REG_SZ /d "0000080c" /f
+reg add "HKCU\Keyboard Layout\Preload" /v 1 /t REG_SZ /d $code2 /f
 
 
 #$LanguageList = Get-WinUserLanguageList
