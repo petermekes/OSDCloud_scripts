@@ -23,10 +23,10 @@ Set-WinUserLanguageList $LanguageList -Force
 Stop-Transcript
 #>
 
-if ($GroupTag -eq 'TF-NL'){$Language = "nl-US"}
-if ($GroupTag -eq 'TF-BE'){$Language = "fr-BE"}
-if ($GroupTag -eq 'TF-DE'){$Language = "de-DE"}
-if ($GroupTag -eq 'TF-LU'){$Language = "lb"}
+#if ($GroupTag -eq 'TF-NL'){$Language = "nl-US"}
+#if ($GroupTag -eq 'TF-BE'){$Language = "fr-BE"}
+#if ($GroupTag -eq 'TF-DE'){$Language = "de-DE"}
+#if ($GroupTag -eq 'TF-LU'){$Language = "lb"}
 
 if ($GroupTag -eq 'TF-NL'){
         $Language = 'nl-US'
