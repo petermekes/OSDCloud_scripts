@@ -30,8 +30,13 @@ if ($GroupTag -eq 'TF-LU'){$Language = "lb"}
 
 Write-Host -ForegroundColor Green "Set keyboard language to $Language"
 
-$LanguageLists = Get-WinUserLanguageList
-$LanguageLists.Add("$Language")
+$LanguageList = Get-WinUserLanguageList
+$LanguageList.Add("$Language")
 
-Set-WinUserLanguageList $LanguageLists -Force
+Set-WinUserLanguageList $LanguageList -Force
+
+$LanguageList = Get-WinUserLanguageList
+$LanguageList.Remove(($LanguageList | Where-Object LanguageTag -like 'en-US'))
+Set-WinUserLanguageList $LanguageList -Force
 Start-Sleep -Seconds 5
+
