@@ -28,6 +28,27 @@ if ($GroupTag -eq 'TF-BE'){$Language = "fr-BE"}
 if ($GroupTag -eq 'TF-DE'){$Language = "de-DE"}
 if ($GroupTag -eq 'TF-LU'){$Language = "lb"}
 
+if ($GroupTag -eq 'TF-NL'){
+        $Language = 'nl-US'
+        $code = '0409:00000409' 
+        $code2 = '080C'
+        }
+if ($GroupTag -eq 'TF-BE'){
+        $Language = 'fr-BE'
+        $code = '080C:0000080C' 
+        $code2 = '080C'
+        }
+if ($GroupTag -eq 'TF-DE'){
+        $Language = 'de-DE'
+        $code = '0407:00000407' 
+        $code2 = '080C'
+        }
+if ($GroupTag -eq 'TF-LU'){
+        $Language = 'lb'
+        $code = '080C:0000080C' 
+        $code2 = '080C'
+        }
+
 Write-Host -ForegroundColor Green "Set keyboard language to $Language"
 
 reg add "HKCU\Control Panel\International\User Profile\fr-BE" /v 080C:0000080c /t REG_DWORD /d 1 /f
