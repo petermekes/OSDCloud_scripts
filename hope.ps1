@@ -111,6 +111,5 @@ if (!(Test-Path $DriverPath$ImageFileNameDL)){Copy-Item -Path C:\OSDCloud\OS\$Im
 #===================
 
 restart-computer
-pause
 }
 
