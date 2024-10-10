@@ -75,8 +75,8 @@ if (Test-HPIASupport){
 Write-Output $Global:MyOSDCloud
 
 #Update Files in Module that have been updated since last PowerShell Gallery Build (Testing Only)
-$ModulePath = (Get-ChildItem -Path "$($Env:ProgramFiles)\WindowsPowerShell\Modules\osd" | Where-Object {$_.Attributes -match "Directory"} | select -Last 1).fullname
-import-module "$ModulePath\OSD.psd1" -Force
+#$ModulePath = (Get-ChildItem -Path "$($Env:ProgramFiles)\WindowsPowerShell\Modules\osd" | Where-Object {$_.Attributes -match "Directory"} | select -Last 1).fullname
+#import-module "$ModulePath\OSD.psd1" -Force
 
 #Launch OSDCloud
 Write-Host "Starting OSDCloud" -ForegroundColor Green
