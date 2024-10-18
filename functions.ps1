@@ -773,7 +773,7 @@ if ((Get-CimInstance -ClassName Win32_ComputerSystem).Manufacturer -match "Lenov
 }
 
 
-
+<#
     # Get-CimInstance won't work due to Get-CimInstance -Namespace root\cimv2\power -ClassName Win32_PowerPlan doesn't have the "Activate" trigger as Get-WmiObject does
     $CurrentPlan = Get-WmiObject -Namespace root\cimv2\power -ClassName Win32_PowerPlan | Where-Object -FilterScript {$_.IsActive}
 
@@ -800,8 +800,8 @@ if ((Get-CimInstance -ClassName Win32_ComputerSystem).Manufacturer -match "Lenov
     $ReturnResults | Add-Member -MemberType NoteProperty -Name "AC" -Value $ACMinutes -Force
     $ReturnResults | Add-Member -MemberType NoteProperty -Name "DC" -Value $DCMinutes -Force
     return $ReturnResults
-#}
-
+}
+#>
 Write-Host -ForegroundColor Green "[+] Function Set-PowerSettingTurnMonitorOffAfter"
 function Set-PowerSettingTurnMonitorOffAfter
 {
