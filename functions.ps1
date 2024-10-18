@@ -800,7 +800,7 @@ if ((Get-CimInstance -ClassName Win32_ComputerSystem).Manufacturer -match "Lenov
     $ReturnResults | Add-Member -MemberType NoteProperty -Name "AC" -Value $ACMinutes -Force
     $ReturnResults | Add-Member -MemberType NoteProperty -Name "DC" -Value $DCMinutes -Force
     return $ReturnResults
-}
+#}
 
 Write-Host -ForegroundColor Green "[+] Function Set-PowerSettingTurnMonitorOffAfter"
 function Set-PowerSettingTurnMonitorOffAfter
