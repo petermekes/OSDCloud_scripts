@@ -30,8 +30,8 @@ if ($env:SystemDrive -eq 'X:') {
 #Variables to define the Windows OS / Edition etc to be applied during OSDCloud
 $Product = (Get-MyComputerProduct)
 $OSVersion = 'Windows 11' #Used to Determine Driver Pack
-$OSReleaseID = '23H2' #Used to Determine Driver Pack
-$OSName = 'Windows 11 23H2 x64'
+$OSReleaseID = '24H2' #Used to Determine Driver Pack
+$OSName = 'Windows 11 24H2 x64'
 $OSEdition = 'Enterprise'
 $OSActivation = 'Volume'
 $OSLanguage = 'en-us'
