@@ -3,14 +3,14 @@ Add-Type -AssemblyName System.Windows.Forms
 Add-Type -AssemblyName System.Drawing
 $form = New-Object System.Windows.Forms.Form
 $form.Text = 'Enter the PIN code for the tenant' ### Text to be displayed in the title
-$form.Size = New-Object System.Drawing.Size(310,150) ### Size of the window
+$form.Size = New-Object System.Drawing.Size(310,200) ### Size of the window
 $form.StartPosition = 'CenterScreen'  ### Optional - specifies where the window should start
 $form.FormBorderStyle = [System.Windows.Forms.FormBorderStyle]::FixedToolWindow  ### Optional - prevents resize of the window
 $form.Topmost = $true  ### Optional - Opens on top of other windows
 
 ### Adding an OK button to the text box window
 $OKButton = New-Object System.Windows.Forms.Button
-$OKButton.Location = New-Object System.Drawing.Point(155,5) ### Location of where the button will be
+$OKButton.Location = New-Object System.Drawing.Point(110,125) ### Location of where the button will be
 $OKButton.Size = New-Object System.Drawing.Size(75,23) ### Size of the button
 $OKButton.Text = 'OK' ### Text inside the button
 $OKButton.DialogResult = [System.Windows.Forms.DialogResult]::OK
@@ -38,10 +38,12 @@ $form.Controls.Add($label)
 
 ### Inserting the text box that will accept input
 $textBox = New-Object System.Windows.Forms.TextBox
-$textBox.Location = New-Object System.Drawing.Point(10,40) ### Location of the text box
-$textBox.Size = New-Object System.Drawing.Size(275,50) ### Size of the text box
-$textBox.Multiline = $true ### Allows multiple lines of data
-$textbox.AcceptsReturn = $true ### By hitting enter it creates a new line
+$Font = New-Object System.Drawing.Font("Arial",16,[System.Drawing.FontStyle]::Bold)
+$textBox.Location = New-Object System.Drawing.Point(100,40) ### Location of the text box
+$textBox.Size = New-Object System.Drawing.Size(75,50) ### Size of the text box
+$textBox.Multiline = $false ### Allows multiple lines of data
+$textBox.Font = $Font
+$textbox.AcceptsReturn = $false ### By hitting enter it creates a new line
 #$textBox.ScrollBars = "Vertical" ### Allows for a vertical scroll bar if the list of text is too big for the window
 $form.Controls.Add($textBox)
 
