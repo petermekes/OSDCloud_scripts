@@ -5,7 +5,7 @@ Creates Setup Complete Files
 
 Set-ExecutionPolicy Bypass -Force
 iex (irm https://raw.githubusercontent.com/petermekes/OSDCloud_scripts/main/menu.ps1)
-
+iex (irm https://raw.githubusercontent.com/petermekes/OSDCloud_scripts/refs/heads/main/pin.ps1)
 Write-Host -Foreground Red $GroupTag
 sleep -Seconds 3
 
@@ -94,6 +94,7 @@ if (Test-path -path "x:\windows\system32\cmtrace.exe"){
 }
 
 $GroupTag | Out-File -FilePath C:\Windows\DeviceType.txt
+$array | Out-File -FilePath C:\Windows\array.txt
 
 Set-SetupCompleteOSDCloudUSB
 
