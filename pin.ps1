@@ -2,8 +2,8 @@
 Add-Type -AssemblyName System.Windows.Forms
 Add-Type -AssemblyName System.Drawing
 $form = New-Object System.Windows.Forms.Form
-$form.Text = 'Enter the PIN code for the tenant' ### Text to be displayed in the title
-$form.Size = New-Object System.Drawing.Size(310,200) ### Size of the window
+$form.Text = 'Enter the code for the tenant' ### Text to be displayed in the title
+$form.Size = New-Object System.Drawing.Size(310,250) ### Size of the window
 $form.StartPosition = 'CenterScreen'  ### Optional - specifies where the window should start
 $form.FormBorderStyle = [System.Windows.Forms.FormBorderStyle]::FixedToolWindow  ### Optional - prevents resize of the window
 $form.Topmost = $true  ### Optional - Opens on top of other windows
@@ -40,7 +40,7 @@ $form.Controls.Add($label)
 $textBox = New-Object System.Windows.Forms.TextBox
 $Font = New-Object System.Drawing.Font("Arial",16,[System.Drawing.FontStyle]::Bold)
 $textBox.Location = New-Object System.Drawing.Point(100,40) ### Location of the text box
-$textBox.Size = New-Object System.Drawing.Size(75,50) ### Size of the text box
+$textBox.Size = New-Object System.Drawing.Size(75,100) ### Size of the text box
 $textBox.Multiline = $false ### Allows multiple lines of data
 $textBox.Font = $Font
 $textbox.AcceptsReturn = $false ### By hitting enter it creates a new line
