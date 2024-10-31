@@ -63,7 +63,7 @@ $form.Controls.Add($label)
 $textBox = New-Object System.Windows.Forms.TextBox
 $Font = New-Object System.Drawing.Font("Arial",16,[System.Drawing.FontStyle]::Bold)
 $textBox.Location = New-Object System.Drawing.Point(100,40) ### Location of the text box
-$textBox.Size = New-Object System.Drawing.Size(75,100) ### Size of the text box
+$textBox.Size = New-Object System.Drawing.Size(75,150) ### Size of the text box
 $textBox.Multiline = $false ### Allows multiple lines of data
 $textBox.Font = $Font
 $textbox.AcceptsReturn = $false ### By hitting enter it creates a new line
