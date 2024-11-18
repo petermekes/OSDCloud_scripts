@@ -64,7 +64,7 @@ if ($DriverPack){
 if (Test-HPIASupport){
     #$Global:MyOSDCloud.DevMode = [bool]$True
     $Global:MyOSDCloud.HPTPMUpdate = [bool]$True
-    if ($Product -ne '83B2'){$Global:MyOSDCloud.HPIAALL = [bool]$true} #I've had issues with this device and HPIA
+    if (($Product -ne '83B2') -and ($Product -ne '8B41')){$Global:MyOSDCloud.HPIAALL = [bool]$true} #I've had issues with this device and HPIA
     $Global:MyOSDCloud.HPBIOSUpdate = [bool]$true
 
     #Set HP BIOS Settings to what I want:
