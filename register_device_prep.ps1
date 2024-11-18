@@ -1,5 +1,5 @@
 # Webhook URL
-$webhook = "https://03ba3236-2802-4923-854b-47bf3e4e203f.webhook.we.azure-automation.net/webhooks?token=M3jirVSnkIgIIUxM0v6n6j4fDs00Yn0c5SDPU%2fc7Y3I%3d"
+$webhook = "https://13ba3236-2802-4923-854b-47bf3e4e203f.webhook.we.azure-automation.net/webhooks?token=M3jirVSnkIgIIUxM0v6n6j4fDs00Yn0c5SDPU%2fc7Y3I%3d"
 
 # Get the computer system and BIOS information
 $computerSystem = Get-CimInstance -ClassName Win32_ComputerSystem
