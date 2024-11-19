@@ -109,6 +109,7 @@ Set-SetupCompleteOSDCloudUSB
 #Save Windows Image on USB 
 $OSDCloudUSB = Get-Volume.usb | Where-Object {($_.FileSystemLabel -match 'OSDCloud') -or ($_.FileSystemLabel -match 'BHIMAGE')} | Select-Object -First 1
 $DriverPath = "$($OSDCloudUSB.DriveLetter):\OSDCloud\OS\"
+if (!(Test-Path $DriverPath)){New-Item -ItemType Directory -Path $DriverPath}
 $ImageFileName = Get-ChildItem -Path $DriverPath -Name *.esd
 $ImageFileNameDL = Get-ChildItem -Path 'C:\OSDCloud\OS' -Name *.esd 
 
