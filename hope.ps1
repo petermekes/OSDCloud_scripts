@@ -66,8 +66,8 @@ if (Test-HPIASupport){
     $Global:MyOSDCloud.HPTPMUpdate = [bool]$False
     #$Global:MyOSDCloud.HPTPMUpdate = [bool]$True
     if (($Product -ne '83B2') -and ($Product -ne '8B41')){$Global:MyOSDCloud.HPIAALL = [bool]$true} #I've had issues with this device and HPIA
-    #$Global:MyOSDCloud.HPBIOSUpdate = [bool]$true
-    $Global:MyOSDCloud.HPBIOSUpdate = [bool]$false
+    $Global:MyOSDCloud.HPBIOSUpdate = [bool]$true
+    #$Global:MyOSDCloud.HPBIOSUpdate = [bool]$false
 
     #Set HP BIOS Settings to what I want:
     iex (irm https://raw.githubusercontent.com/petermekes/OSDCloud_scripts/refs/heads/main/Manage-HPBiosSettings.ps1)
