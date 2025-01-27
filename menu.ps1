@@ -65,6 +65,9 @@ $listBox.Width  = 300
 [void] $listBox.Items.Add('-------- Springboard Network --------')
 [void] $listBox.Items.Add('SBN-Personal')
 [void] $listBox.Items.Add('SBN-Shared')
+[void] $listBox.Items.Add('')
+[void] $listBox.Items.Add('-------- Consulytic NV --------')
+[void] $listBox.Items.Add('CONSUL-P')
 
 
 $form.Controls.Add($listBox)
