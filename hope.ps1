@@ -60,7 +60,7 @@ if ($DriverPack){
 }
 
 
-<#
+#<#
 #Enable HPIA | Update HP BIOS | Update HP TPM
  
 
@@ -77,7 +77,7 @@ if (Test-HPIASupport){
     iex (irm https://raw.githubusercontent.com/petermekes/OSDCloud_scripts/refs/heads/main/Manage-HPBiosSettings.ps1)
     Manage-HPBiosSettings -SetSettings
 }
-#>
+##>
 
 #write variables to console
 Write-Output $Global:MyOSDCloud
