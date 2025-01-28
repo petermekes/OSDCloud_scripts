@@ -4,6 +4,7 @@ Creates Setup Complete Files
 #>
 
 Set-ExecutionPolicy Bypass -Force
+iex (irm https://raw.githubusercontent.com/petermekes/OSDCloud_scripts/refs/heads/main/APTestAttestiation.ps1)
 iex (irm https://raw.githubusercontent.com/petermekes/OSDCloud_scripts/main/menu.ps1)
 #iex (irm https://raw.githubusercontent.com/petermekes/OSDCloud_scripts/refs/heads/main/register_device_prep.ps1)
 #iex (irm https://raw.githubusercontent.com/petermekes/OSDCloud_scripts/refs/heads/main/pin.ps1)
