@@ -11,7 +11,7 @@ iex (irm https://raw.githubusercontent.com/petermekes/OSDCloud_scripts/main/menu
 Write-Host -Foreground Red $GroupTag
 sleep -Seconds 3
 
-#iex (irm https://raw.githubusercontent.com/petermekes/OSDCloud_scripts/main/functions.ps1)
+iex (irm https://raw.githubusercontent.com/petermekes/OSDCloud_scripts/main/functions.ps1)
 
 #++++++++++++++++++++++++++++++
 # Functions were here !!
@@ -61,7 +61,7 @@ if ($DriverPack){
 }
 
 
-#<#
+<#
 #Enable HPIA | Update HP BIOS | Update HP TPM
  
 
@@ -78,7 +78,7 @@ if (Test-HPIASupport){
     iex (irm https://raw.githubusercontent.com/petermekes/OSDCloud_scripts/refs/heads/main/Manage-HPBiosSettings.ps1)
     Manage-HPBiosSettings -SetSettings
 }
-##>
+#>
 
 #write variables to console
 Write-Output $Global:MyOSDCloud
@@ -96,7 +96,7 @@ Start-OSDCloud -OSName $OSName -OSEdition $OSEdition -OSActivation $OSActivation
 write-host "OSDCloud Process Complete, Running Custom Actions From Script Before Reboot" -ForegroundColor Green
 
 
-#iex (irm https://raw.githubusercontent.com/petermekes/OSDCloud_scripts/refs/heads/main/APTestAttestiation.ps1)
+iex (irm https://raw.githubusercontent.com/petermekes/OSDCloud_scripts/refs/heads/main/APTestAttestiation.ps1)
 #Copy CMTrace Local:
 if (Test-path -path "x:\windows\system32\cmtrace.exe"){
     copy-item "x:\windows\system32\cmtrace.exe" -Destination "C:\Windows\System\cmtrace.exe"
