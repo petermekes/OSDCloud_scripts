@@ -68,7 +68,8 @@ $listBox.Width  = 300
 [void] $listBox.Items.Add('')
 [void] $listBox.Items.Add('-------- Consulytic NV --------')
 [void] $listBox.Items.Add('CONSUL-P')
-
+[void] $listBox.Items.Add('-------- MO --------')
+[void] $listBox.Items.Add('EDC')
 
 $form.Controls.Add($listBox)
 
