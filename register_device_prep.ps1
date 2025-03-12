@@ -1,6 +1,6 @@
 # Webhook URL
 if (!($GroupTag)){
-$webhook = "https://13ba3236-2802-4923-854b-47bf3e4e203f.webhook.we.azure-automation.net/webhooks?token=M3jirVSnkIgIIUxM0v6n6j4fDs00Yn0c5SDPU%2fc7Y3I%3d"
+$webhook = "https://63f47c38-570a-4db2-b9bd-ca91bd1b022b.webhook.we.azure-automation.net/webhooks?token=Y%2f6JUVkYmuE%2bsGR5xZrUwiDOPLF3rSG0fK5kVhlSo30%3d"
 
 # Get the computer system and BIOS information
 $computerSystem = Get-CimInstance -ClassName Win32_ComputerSystem
