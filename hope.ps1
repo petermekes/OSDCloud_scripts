@@ -99,7 +99,7 @@ if (Test-path -path "x:\windows\system32\cmtrace.exe"){
 $GroupTag | Out-File -FilePath C:\Windows\DeviceType.txt
 $array | Out-File -FilePath C:\Windows\array.txt
 
-Set-SetupCompleteOSDCloudUSB
+if ($GroupTag) {Set-SetupCompleteOSDCloudUSB}
 
 #Save Windows Image on USB 
 $OSDCloudUSB = Get-Volume.usb | Where-Object {($_.FileSystemLabel -match 'OSDCloud') -or ($_.FileSystemLabel -match 'BHIMAGE')} | Select-Object -First 1
