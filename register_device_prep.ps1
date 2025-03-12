@@ -15,4 +15,6 @@ $webhookData = @{
 
 # Upload the device identity
 Invoke-WebRequest -Method POST -Uri $webhook -Body $webhookData -UseBasicParsing
+Write-host "APv2 is done" 
 }
+sleep -Seconds 5
