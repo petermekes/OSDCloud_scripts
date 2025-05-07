@@ -4,9 +4,9 @@ Start-Transcript -Path (Join-Path "C:\OSDCloud\Logs\" $Global:Transcript) -Error
 Write-Host "Execute Test Autopilot Attestation" -ForegroundColor Green
 
 Set-ExecutionPolicy -ExecutionPolicy Bypass -Force
-# Install-Module -Name Autopilottestattestation -Force
-# Import-Module -Name Autopilottestattestation
-# Test-Autopilotattestation
+Install-Module -Name Autopilottestattestation -Force
+Import-Module -Name Autopilottestattestation
+Test-Autopilotattestation
 
 
 <#PSScriptInfo
