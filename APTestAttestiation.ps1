@@ -6,6 +6,7 @@ Write-Host "Execute Test Autopilot Attestation" -ForegroundColor Green
 Set-ExecutionPolicy -ExecutionPolicy Bypass -Force
 Install-Module -Name Autopilottestattestation -Force
 Import-Module -Name Autopilottestattestation
+Write-Host "Execute Test Autopilot Attestation" -ForegroundColor Green
 Test-Autopilotattestation
 
 
