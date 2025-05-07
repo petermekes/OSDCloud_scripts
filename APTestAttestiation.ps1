@@ -351,7 +351,7 @@ write-host "Script is not run as admin! Please rerun the script as admin" -Foreg
 
 
 
-<# 
+# 
 Test TPM Attestation #
 $IntegrityServicesRegPath = "HKLM:\SYSTEM\CurrentControlSet\Control\IntegrityServices"
 $WBCL = "WBCL"
@@ -360,7 +360,7 @@ $EkCertificatePresent = "EkCertificatePresent"
 $OOBERegPath = "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Setup\OOBE"
 $SetupDisplayedEula = "SetupDisplayedEula"
 
-# downloading gif if attestation succeeds #
+<# downloading gif if attestation succeeds #
 
 $path = "C:\temp"
 if (!(Test-Path $path))
