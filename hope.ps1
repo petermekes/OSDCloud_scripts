@@ -14,14 +14,7 @@ sleep -Seconds 3
 
 #WinPE Stuff
 if ($env:SystemDrive -eq 'X:') {
-    #Create Custom SetupComplete on USBDrive, this will get copied and run during SetupComplete Phase thanks to OSD Function: Set-SetupCompleteOSDCloudUSB
-    #Set-SetupCompleteCreateStartHOPEonUSB
-    #Set-SetupCompleteOSDCloudUSB
     
-    #Write-Host -ForegroundColor Green "Starting win11.garytown.com"
-    #to Run boot OSDCloudUSB, at the PS Prompt: iex (irm win11.garytown.com)
-
-
 #Variables to define the Windows OS / Edition etc to be applied during OSDCloud
 $Product = (Get-MyComputerProduct)
 $OSVersion = 'Windows 11' #Used to Determine Driver Pack
