@@ -59,7 +59,7 @@ Start-Transcript -Path (Join-Path "C:\OSDCloud\Logs\" $Global:Transcript) -Error
 
 function test-managemicrosoft {
 
-$web = Invoke-WebRequest https://portal.manage.microsoft.com
+$web = Invoke-WebRequest https://portal.manage.microsoft.com -UseBasicParsing
 $web.tostring() -split "[`r`n]" | select-string "Copyright (C) Microsoft Corporation. All rights reserved"
 $webclient = new-object System.Net.WebClient 
 $webclient.Headers.Add("user-agent", "PowerShell Script")
@@ -349,8 +349,7 @@ write-host "Script is not run as admin! Please rerun the script as admin" -Foreg
 
 
 
-# 
-Test TPM Attestation #
+# Test TPM Attestation #
 $IntegrityServicesRegPath = "HKLM:\SYSTEM\CurrentControlSet\Control\IntegrityServices"
 $WBCL = "WBCL"
 $TaskStatesRegPath = "HKLM:\SYSTEM\CurrentControlSet\Services\TPM\WMI\taskStates"
