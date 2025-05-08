@@ -1,11 +1,8 @@
-
-
 Write-Host "Execute Test Autopilot Attestation" -ForegroundColor Green
 
 Set-ExecutionPolicy -ExecutionPolicy Bypass -Force
 #Install-Module -Name Autopilottestattestation -Force
 #Import-Module -Name Autopilottestattestation
-#Write-Host "Execute Test Autopilot Attestation" -ForegroundColor Green
 #Test-Autopilotattestation
 
 
@@ -50,6 +47,7 @@ Blog post with examples and explanations @call4cloud.nl
 .LINK
 Online version: https://call4cloud.nl/2022/08/the-last-tpm-attestation-script-from-your-lover/
 #>
+
 function Test-AutopilotAttestation {
 
 $Global:Transcript = "$((Get-Date).ToString('yyyy-MM-dd-HHmmss'))-Test-Autopilotattestation.log"
@@ -58,8 +56,6 @@ Start-Transcript -Path (Join-Path "C:\OSDCloud\Logs\" $Global:Transcript) -Error
 ############################################
 # defining some functions #
 ############################################
-
-
 
 function test-managemicrosoft {
 
@@ -362,7 +358,8 @@ $EkCertificatePresent = "EkCertificatePresent"
 $OOBERegPath = "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Setup\OOBE"
 $SetupDisplayedEula = "SetupDisplayedEula"
 
-<# downloading gif if attestation succeeds #
+<# 
+#downloading gif if attestation succeeds #
 
 $path = "C:\temp"
 if (!(Test-Path $path))
