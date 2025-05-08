@@ -342,7 +342,7 @@ write-host "Script is not run as admin! Please rerun the script as admin" -Foreg
         test-windowslicense
     write-host "`n"
     Write-Host "Checking if the device is up to date to make sure all TPM fixes are applied. Please have some patience or get yourself a membeer" -ForegroundColor yellow
-    test-requiredupdates
+    #test-requiredupdates
     write-host "`n"
     test-tpmversion
 
