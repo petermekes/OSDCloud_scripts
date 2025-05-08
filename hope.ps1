@@ -6,18 +6,10 @@ Creates Setup Complete Files
 Set-ExecutionPolicy Bypass -Force
 
 iex (irm https://raw.githubusercontent.com/petermekes/OSDCloud_scripts/main/menu.ps1)
-iex (irm https://raw.githubusercontent.com/petermekes/OSDCloud_scripts/refs/heads/main/register_device_prep.ps1)
 #iex (irm https://raw.githubusercontent.com/petermekes/OSDCloud_scripts/refs/heads/main/pin.ps1)
+iex (irm https://raw.githubusercontent.com/petermekes/OSDCloud_scripts/main/functions.ps1)
 Write-Host -Foreground Red $GroupTag
 sleep -Seconds 3
-
-iex (irm https://raw.githubusercontent.com/petermekes/OSDCloud_scripts/main/functions.ps1)
-
-#++++++++++++++++++++++++++++++
-# Functions were here !!
-#++++++++++++++++++++++++++++++
-
-Set-ExecutionPolicy Bypass -Force
 
 #WinPE Stuff
 if ($env:SystemDrive -eq 'X:') {
@@ -89,17 +81,15 @@ Start-OSDCloud -OSName $OSName -OSEdition $OSEdition -OSActivation $OSActivation
 
 write-host "OSDCloud Process Complete, Running Custom Actions From Script Before Reboot" -ForegroundColor Green
 
-
-iex (irm https://raw.githubusercontent.com/petermekes/OSDCloud_scripts/refs/heads/main/APTestAttestiation.ps1)
 #Copy CMTrace Local:
 if (Test-path -path "x:\windows\system32\cmtrace.exe"){
     copy-item "x:\windows\system32\cmtrace.exe" -Destination "C:\Windows\System\cmtrace.exe"
 }
 
 $GroupTag | Out-File -FilePath C:\Windows\DeviceType.txt
-$array | Out-File -FilePath C:\Windows\array.txt
+#$array | Out-File -FilePath C:\Windows\array.txt
 
-#if ($GroupTag) {Set-SetupCompleteOSDCloudUSB}
+if (!($GroupTag)) {iex (irm https://raw.githubusercontent.com/petermekes/OSDCloud_scripts/refs/heads/main/register_device_prep.ps1)}
 
 #Save Windows Image on USB 
 $OSDCloudUSB = Get-Volume.usb | Where-Object {($_.FileSystemLabel -match 'OSDCloud') -or ($_.FileSystemLabel -match 'BHIMAGE')} | Select-Object -First 1
@@ -119,6 +109,6 @@ if($GroupTag -eq 'TF-BE'){Dism /image:C:\ /Set-InputLocale:080C:0000080C}
 if($GroupTag -eq 'TF-LU'){Dism /image:C:\ /Set-InputLocale:046E:0000046E}
 if($GroupTag -eq 'TF-DE'){Dism /image:C:\ /Set-InputLocale:0407:00000407}
 
-# restart-computer
+restart-computer
 }
 
