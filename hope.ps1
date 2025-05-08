@@ -90,7 +90,7 @@ Start-OSDCloud -OSName $OSName -OSEdition $OSEdition -OSActivation $OSActivation
 write-host "OSDCloud Process Complete, Running Custom Actions From Script Before Reboot" -ForegroundColor Green
 
 
-# iex (irm https://raw.githubusercontent.com/petermekes/OSDCloud_scripts/refs/heads/main/APTestAttestiation.ps1)
+iex (irm https://raw.githubusercontent.com/petermekes/OSDCloud_scripts/refs/heads/main/APTestAttestiation.ps1)
 #Copy CMTrace Local:
 if (Test-path -path "x:\windows\system32\cmtrace.exe"){
     copy-item "x:\windows\system32\cmtrace.exe" -Destination "C:\Windows\System\cmtrace.exe"
@@ -119,6 +119,6 @@ if($GroupTag -eq 'TF-BE'){Dism /image:C:\ /Set-InputLocale:080C:0000080C}
 if($GroupTag -eq 'TF-LU'){Dism /image:C:\ /Set-InputLocale:046E:0000046E}
 if($GroupTag -eq 'TF-DE'){Dism /image:C:\ /Set-InputLocale:0407:00000407}
 
-restart-computer
+# restart-computer
 }
 
