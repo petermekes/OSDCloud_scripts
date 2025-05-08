@@ -1,13 +1,12 @@
-$Global:Transcript = "$((Get-Date).ToString('yyyy-MM-dd-HHmmss'))-Test-Autopilotattestation.log"
-Start-Transcript -Path (Join-Path "C:\OSDCloud\Logs\" $Global:Transcript) -ErrorAction Ignore
+
 
 Write-Host "Execute Test Autopilot Attestation" -ForegroundColor Green
 
 Set-ExecutionPolicy -ExecutionPolicy Bypass -Force
-Install-Module -Name Autopilottestattestation -Force
-Import-Module -Name Autopilottestattestation
-Write-Host "Execute Test Autopilot Attestation" -ForegroundColor Green
-Test-Autopilotattestation
+#Install-Module -Name Autopilottestattestation -Force
+#Import-Module -Name Autopilottestattestation
+#Write-Host "Execute Test Autopilot Attestation" -ForegroundColor Green
+#Test-Autopilotattestation
 
 
 <#PSScriptInfo
@@ -53,6 +52,8 @@ Online version: https://call4cloud.nl/2022/08/the-last-tpm-attestation-script-fr
 #>
 function Test-AutopilotAttestation {
 
+$Global:Transcript = "$((Get-Date).ToString('yyyy-MM-dd-HHmmss'))-Test-Autopilotattestation.log"
+Start-Transcript -Path (Join-Path "C:\OSDCloud\Logs\" $Global:Transcript) -ErrorAction Ignore
 
 ############################################
 # defining some functions #
@@ -590,7 +591,9 @@ If ((Get-ItemProperty -Path $AIKError -Name "ErrorCode" -ErrorAction Ignore).err
     write-host "TPM is still NOT suited for Autopilot Pre-Provisioning, please re-run the test again" -ForegroundColor RED
      
    }
-   
+Stop-Transcript   
 }
 
-Stop-Transcript
+
+
+Test-Autopilotattestation
