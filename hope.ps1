@@ -4,12 +4,15 @@ Creates Setup Complete Files
 #>
 
 Set-ExecutionPolicy Bypass -Force
-
+pause
 iex (irm https://raw.githubusercontent.com/petermekes/OSDCloud_scripts/main/menu.ps1)
 #iex (irm https://raw.githubusercontent.com/petermekes/OSDCloud_scripts/refs/heads/main/pin.ps1)
-iex (irm https://raw.githubusercontent.com/petermekes/OSDCloud_scripts/refs/heads/main/register_device_prep.ps1)
+#iex (irm https://raw.githubusercontent.com/petermekes/OSDCloud_scripts/refs/heads/main/register_device_prep.ps1)
+pause
 iex (irm https://raw.githubusercontent.com/petermekes/OSDCloud_scripts/main/functions.ps1)
+pause
 Write-Host -Foreground Red $GroupTag
+pause
 sleep -Seconds 3
 
 #WinPE Stuff
