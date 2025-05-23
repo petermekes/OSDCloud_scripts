@@ -2,7 +2,7 @@
 Loads Functions
 Creates Setup Complete Files
 #>
-
+pause
 Set-ExecutionPolicy Bypass -Force
 pause
 iex (irm https://raw.githubusercontent.com/petermekes/OSDCloud_scripts/main/menu.ps1)
