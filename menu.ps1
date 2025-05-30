@@ -70,7 +70,7 @@ $listBox.Width  = 300
 #[void] $listBox.Items.Add('CONSUL-P')
 [void] $listBox.Items.Add('-------- Mekes-Online --------')
 [void] $listBox.Items.Add('ICE-PERSONAL')
-
+[void] $listBox.Items.Add('ICE-SHARED')
 $form.Controls.Add($listBox)
 
 $form.Topmost = $true
