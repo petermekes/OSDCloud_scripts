@@ -54,7 +54,7 @@ $form.Controls.Add($label)
 $listBox = New-Object System.Windows.Forms.ListBox
 $listBox.Location = New-Object System.Drawing.Point(10,40)
 $listBox.Size = New-Object System.Drawing.Size(260,20)
-$listBox.Height = 240
+$listBox.Height = 300
 $listBox.Width  = 300
 #[void] $listBox.Items.Add('-------- TriFinance --------')
 #[void] $listBox.Items.Add('TF-NL')
@@ -68,9 +68,12 @@ $listBox.Width  = 300
 #[void] $listBox.Items.Add('')
 #[void] $listBox.Items.Add('-------- Consulytic NV --------')
 #[void] $listBox.Items.Add('CONSUL-P')
-[void] $listBox.Items.Add('-------- Mekes-Online --------')
-[void] $listBox.Items.Add('ICE-PERSONAL')
-[void] $listBox.Items.Add('ICE-SHARED')
+#[void] $listBox.Items.Add('-------- Mekes-Online --------')
+#[void] $listBox.Items.Add('ICE-PERSONAL')
+#[void] $listBox.Items.Add('ICE-SHARED')
+[void] $listBox.Items.Add('-------- Asia Express Food --------')
+[void] $listBox.Items.Add('Personal')
+[void] $listBox.Items.Add('Shared-AEF')
 $form.Controls.Add($listBox)
 
 $form.Topmost = $true
